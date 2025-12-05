@@ -1,3 +1,4 @@
+
 <h2>Datos de las personas</h2>
 <button (click)="AgregarPersona()">Agregar Persona</button>
 
@@ -8,7 +9,10 @@
       <p>{{$index}} Nombre:{{persona.nombre}}</p>
       <p>Apellido:{{persona.apellido}}</p>
       <p>Cedula:{{persona.cedula}}</p>
-      <button (click)="Remover(personas)">Remover</button>
+
+      <button mat-flat-button (click)="Remover(personas)">
+        <mat-icon>delete forever</mat-icon>
+        Remover</button>
     </div>
     }
   </ng-container>

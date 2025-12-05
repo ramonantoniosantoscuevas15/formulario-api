@@ -1,9 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ListadoPersonas } from './personas/listado-personas/listado-personas';
+import { Menu } from "./compartidos/componentes/menu/menu";
 
 @Component({
   selector: 'app-root',
-  imports: [ListadoPersonas],
+  imports: [ListadoPersonas, Menu],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -3,10 +3,11 @@ import { ListadoGenerico } from "../../compartidos/componentes/listado-generico/
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Menu } from "../../compartidos/componentes/menu/menu";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listado-personas',
-  imports: [ListadoGenerico, MatButtonModule, MatIconModule, Menu],
+  imports: [ListadoGenerico, MatButtonModule, MatIconModule,RouterLink],
   templateUrl: './listado-personas.html',
   styleUrl: './listado-personas.css',
 })

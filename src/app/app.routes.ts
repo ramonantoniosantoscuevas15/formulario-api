@@ -6,6 +6,8 @@ import { Telefonos } from './telefonos/telefonos';
 import { Emails } from './emails/emails';
 import { Dirreciones } from './dirreciones/dirreciones';
 import { CrearPersona } from './personas/crear-persona/crear-persona';
+import { EditarCategoria } from './categorias/editar-categoria/editar-categoria';
+import { EditarPersona } from './personas/editar-persona/editar-persona';
 
 export const routes: Routes = [
   {path: '',
@@ -18,6 +20,10 @@ export const routes: Routes = [
   {
     path: 'categorias/crear',
     component: CrearCategorias
+  },
+  {
+    path:'categorias/editar/:id',
+    component: EditarCategoria
   },
   {
     path: 'telefonos',
@@ -34,5 +40,9 @@ export const routes: Routes = [
   {
     path: 'personas/crear-persona',
     component: CrearPersona
+  },
+  {
+    path: 'personas/editar-persona',
+    component: EditarPersona
   }
 ];

@@ -1,39 +1,17 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { ListadoPersonas } from './personas/listado-personas/listado-personas';
-import { Menu } from "./compartidos/componentes/menu/menu";
+
+
+import { MatAnchor, MatButtonModule } from "@angular/material/button";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ListadoPersonas, Menu],
+  imports: [MatButtonModule,RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit {
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.PersonasAgregadas = [
-        {
-          nombre: "Ramon",
-          apellido: "santos",
-          cedula: "123"
-        },
-        {
-          nombre: "Alex",
-          apellido: " guzman",
-          cedula: '123654'
-        },
-        {
-          nombre: "jose",
-          apellido: "zapata",
-          cedula: "7896541"
-        }
-      ]
+export class App  {
 
-    }, 1000);
-
-
-  }
-  PersonasAgregadas!: any[]
 
 
   protected readonly title = signal('formulario');

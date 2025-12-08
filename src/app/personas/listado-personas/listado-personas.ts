@@ -6,7 +6,7 @@ import { Menu } from "../../compartidos/componentes/menu/menu";
 
 @Component({
   selector: 'app-listado-personas',
-  imports: [ListadoGenerico, MatButtonModule, MatIconModule],
+  imports: [ListadoGenerico, MatButtonModule, MatIconModule, Menu],
   templateUrl: './listado-personas.html',
   styleUrl: './listado-personas.css',
 })
@@ -14,18 +14,18 @@ export class ListadoPersonas{
 
   @Input({required:true})
   personas!:any[]
-  AgregarPersona(){
-    this.personas.push({
-      nombre: "julia",
-      apellido: "martes",
-      cedula:"789563"
-    })
-  }
+  // AgregarPersona(){
+  //   this.personas.push({
+  //     nombre: "julia",
+  //     apellido: "martes",
+  //     cedula:"789563"
+  //   })
+  // }
 
-  Remover(personas: any){
-    const indice = this.personas.findIndex((personaActual: any) => personaActual.nombre === personas.titulo)
-    this.personas.splice(indice, 1)
+  // Remover(personas: any){
+  //   const indice = this.personas.findIndex((personaActual: any) => personaActual.nombre === personas.titulo)
+  //   this.personas.splice(indice, 1)
 
-  }
+  // }
 
 }

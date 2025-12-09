@@ -1,1 +1,17 @@
-<button mat-flat-button type="button" (click)="guardarCambios()">Guardar Cambios</button>
+
+<form (submit)="guardarCambios()"[formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>tipo:</mat-label>
+    <input matInput [formControl] = "form.controls.tipo"/>
+    <mat-error>{{obtenerErrorTipo()}}</mat-error>
+
+  </mat-form-field>
+  <div class="contenedor-botones">
+    <button mat-flat-button type="submit"
+    [disabled]="form.invalid">
+    guardarCambios</button>
+    <a mat-stroked-button routerLink="/landing">Cancelar</a>
+
+  </div>
+</form>
+

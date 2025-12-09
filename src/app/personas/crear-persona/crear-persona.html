@@ -6,7 +6,7 @@
     <mat-error>{{obtenerErrorNombre()}}</mat-error>
   </mat-form-field>
   <div class="contenedor-botones">
-    <button mat-flat-button type="button" (click)="guardarCambios()"
+    <button mat-flat-button type="submit"
     [disabled]="form.invalid">
     guardarCambios</button>
     <a mat-stroked-button routerLink="/landing">Cancelar</a>

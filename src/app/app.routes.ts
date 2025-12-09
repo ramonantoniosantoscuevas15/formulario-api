@@ -12,6 +12,7 @@ import { EditarEmail } from './emails/editar-email/editar-email';
 import { EditarTelefono } from './telefonos/editar-telefono/editar-telefono';
 import { EditarDirrecion } from './dirreciones/editar-dirrecion/editar-dirrecion';
 import { ListadoPersonas } from './personas/listado-personas/listado-personas';
+import { FormularioCategoria } from './categorias/formulario-categoria/formulario-categoria';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
   {
     path:'categorias',
     component: IndiceCategorias
+  },
+  {
+    path:'categorias/formulario',
+    component:FormularioCategoria
   },
   {
     path: 'categorias/crear',

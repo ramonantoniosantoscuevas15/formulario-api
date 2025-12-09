@@ -8,6 +8,10 @@ import { Dirreciones } from './dirreciones/dirreciones';
 import { CrearPersona } from './personas/crear-persona/crear-persona';
 import { EditarCategoria } from './categorias/editar-categoria/editar-categoria';
 import { EditarPersona } from './personas/editar-persona/editar-persona';
+import { EditarEmail } from './emails/editar-email/editar-email';
+import { EditarTelefono } from './telefonos/editar-telefono/editar-telefono';
+import { EditarDirrecion } from './dirreciones/editar-dirrecion/editar-dirrecion';
+import { ListadoPersonas } from './personas/listado-personas/listado-personas';
 
 export const routes: Routes = [
   {path: '',
@@ -42,7 +46,23 @@ export const routes: Routes = [
     component: CrearPersona
   },
   {
-    path: 'personas/editar-persona',
+    path: 'personas/editar/:id',
     component: EditarPersona
+  },
+  {
+    path: 'emails/editar/:id',
+    component:EditarEmail
+  },
+  {
+    path: 'telefonos/editar/:id',
+    component:EditarTelefono
+  },
+  {
+    path: 'dirreciones/editar/:id',
+    component:EditarDirrecion
+  },
+  {
+    path:'**',
+    redirectTo:''
   }
 ];

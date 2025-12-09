@@ -14,7 +14,12 @@ import { EditarDirrecion } from './dirreciones/editar-dirrecion/editar-dirrecion
 import { ListadoPersonas } from './personas/listado-personas/listado-personas';
 
 export const routes: Routes = [
-  {path: '',
+  {
+    path: '',
+    component: CrearPersona
+  },
+
+  {path: 'landing',
     component: LandingPage
   },
   {
@@ -41,10 +46,7 @@ export const routes: Routes = [
     path:'dirreciones',
     component:Dirreciones
   },
-  {
-    path: 'personas/crear-persona',
-    component: CrearPersona
-  },
+
   {
     path: 'personas/editar/:id',
     component: EditarPersona

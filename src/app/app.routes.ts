@@ -13,11 +13,12 @@ import { EditarTelefono } from './telefonos/editar-telefono/editar-telefono';
 import { EditarDirrecion } from './dirreciones/editar-dirrecion/editar-dirrecion';
 import { ListadoPersonas } from './personas/listado-personas/listado-personas';
 import { FormularioCategoria } from './categorias/formulario-categoria/formulario-categoria';
+import { FormularioPersonas } from './personas/formulario-personas/formulario-personas';
 
 export const routes: Routes = [
   {
     path: '',
-    component: CrearPersona
+    component: FormularioPersonas
   },
 
   {path: 'landing',

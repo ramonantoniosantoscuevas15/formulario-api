@@ -5,11 +5,24 @@
     <input matInput [formControl] = "form.controls.nombre"/>
     <mat-error>{{obtenerErrorNombre()}}</mat-error>
   </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Apellido:</mat-label>
+    <input matInput [formControl] = "form.controls.apellido"/>
+    <mat-error>{{obtenerErrorApellido()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Cedula:</mat-label>
+    <input matInput [formControl] = "form.controls.cedula"/>
+    <mat-error>{{obtenerErrorCedula()}}</mat-error>
+  </mat-form-field>
+
   <div class="contenedor-botones">
     <button mat-flat-button type="submit"
     [disabled]="form.invalid">
-    guardarCambios</button>
-    <a mat-stroked-button routerLink="/landing">Cancelar</a>
+    guardar Cambios</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
 
   </div>
 </form>

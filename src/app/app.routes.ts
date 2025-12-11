@@ -3,7 +3,7 @@ import { LandingPage } from './landing-page/landing-page';
 import { IndiceCategorias } from './categorias/indice-categorias/indice-categorias';
 import { CrearCategorias } from './categorias/crear-categorias/crear-categorias';
 import { Telefonos } from './telefonos/telefonos';
-import { Emails } from './emails/emails';
+import { Emails } from './emails/crear-emails/emails';
 import { Dirreciones } from './dirreciones/dirreciones';
 import { CrearPersona } from './personas/crear-persona/crear-persona';
 import { EditarCategoria } from './categorias/editar-categoria/editar-categoria';

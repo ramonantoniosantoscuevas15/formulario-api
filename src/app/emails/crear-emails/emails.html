@@ -1,0 +1,13 @@
+<h2>Crear Correo</h2>
+<form action="submit">
+  @for (correos of correo.controls; let i =$index; track correos) {
+    <mat-form-field appearance="outline">
+      <mat-label>Correo</mat-label>
+      <input matInput
+      [id]="'correo'"+i
+      >
+
+    </mat-form-field>
+
+  }
+</form>

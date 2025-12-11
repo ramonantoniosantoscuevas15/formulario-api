@@ -6,20 +6,27 @@ import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones';
 import { CrearPersonaDTO, PersonaDTO } from './personas';
+import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
+import { SelectorMultiple } from "../../compartidos/componentes/selector-multiple/selector-multiple";
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule,RouterLink,MatFormFieldModule,ReactiveFormsModule,MatInputModule],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
 export class CrearPersona implements OnInit {
   ngOnInit(): void {
-    if(this.modelo !== undefined){
+    if (this.modelo !== undefined) {
       this.form.patchValue(this.modelo)
     }
   }
+  @Input({ required: true })
+  categoriasNoSeleccionadas!: SelectorMultipleDTO[]
+
+  @Input({ required: true })
+  categoriasSeleccionadas!: SelectorMultipleDTO[]
   private router = inject(Router)
   private fb = inject(FormBuilder)
   @Input()
@@ -27,51 +34,55 @@ export class CrearPersona implements OnInit {
   @Output()
   postFormulario = new EventEmitter<CrearPersonaDTO>
   form = this.fb.group({
-    nombre:['',{validators:[Validators.required,primeraLetraMayuscula()]}],
-    apellido:['',{validators:[Validators.required,primeraLetraMayuscula()]}],
-    cedula:['',{validators:[Validators.required]}]
+    nombre: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
+    apellido: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
+    cedula: ['', { validators: [Validators.required] }]
   })
 
-  obtenerErrorNombre(): string{
+  obtenerErrorNombre(): string {
     let nombre = this.form.controls.nombre
 
-    if(nombre.hasError('required')){
+    if (nombre.hasError('required')) {
       return "El Campo Nombre es Requerido"
     }
-    if(nombre.hasError('primeraLetraMayuscula')){
+    if (nombre.hasError('primeraLetraMayuscula')) {
       return nombre.getError('primeraLetraMayuscula').mensaje
     }
     return ""
 
   }
-  obtenerErrorApellido(): string{
+  obtenerErrorApellido(): string {
     let apellido = this.form.controls.apellido
 
-    if(apellido.hasError('required')){
+    if (apellido.hasError('required')) {
       return "El Campo Apellido es Requerido"
     }
-    if(apellido.hasError('primeraLetraMayuscula')){
+    if (apellido.hasError('primeraLetraMayuscula')) {
       return apellido.getError('primeraLetraMayuscula').mesaje
     }
     return ""
   }
-  obtenerErrorCedula(): string{
+  obtenerErrorCedula(): string {
     let cedula = this.form.controls.cedula
 
-    if(cedula.hasError('required')){
+    if (cedula.hasError('required')) {
       return "El Campo Cedula es Requerido"
 
     }
-    return""
+    return ""
 
 
   }
 
-  guardarCambios(){
-    if(!this.form.valid){
+  guardarCambios() {
+    if (!this.form.valid) {
       return
     }
     const persona = this.form.value as CrearPersonaDTO
+
+    const categoriasIds = this.categoriasSeleccionadas.map(val => val.llave)
+
+    persona.categoriasIds =categoriasIds
 
     this.postFormulario.emit(persona)
 

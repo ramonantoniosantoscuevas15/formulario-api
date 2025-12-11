@@ -8,5 +8,6 @@ export interface PersonaDTO{
 export interface CrearPersonaDTO{
   nombre: string,
   apellido: string,
-  cedula: string
+  cedula: string,
+  categoriasIds?: number[]
 }

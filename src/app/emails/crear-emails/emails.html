@@ -1,13 +1,18 @@
 <h2>Crear Correo</h2>
-<form action="submit">
-  @for (correos of correo.controls; let i =$index; track correos) {
-    <mat-form-field appearance="outline">
-      <mat-label>Correo</mat-label>
-      <input matInput
-      [id]="'correo'"+i
-      >
 
-    </mat-form-field>
+<form (submit)="guardarCambios()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Correo:</mat-label>
+    <input matInput [formControl] = "form.controls.correos"/>
+    <mat-error>{{obtenerErrorCorreo()}}</mat-error>
 
-  }
+  </mat-form-field>
+  <div class="contenedor-botones">
+    <button mat-flat-button type="submit"
+    [disabled]="form.invalid">
+    guardarCambios</button>
+    <a mat-stroked-button routerLink="/landing">Cancelar</a>
+
+  </div>
+
 </form>

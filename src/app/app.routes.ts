@@ -15,6 +15,7 @@ import { ListadoPersonas } from './personas/listado-personas/listado-personas';
 import { FormularioCategoria } from './categorias/formulario-categoria/formulario-categoria';
 import { FormularioPersonas } from './personas/formulario-personas/formulario-personas';
 import { FormularioEmail } from './emails/formulario-email/formulario-email';
+import { FormularioTelefonos } from './telefonos/formulario-telefonos/formulario-telefonos';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,10 @@ export const routes: Routes = [
   {
     path: 'telefonos',
     component: Telefonos
+  },
+  {
+    path: 'telefonos/formulario',
+    component:FormularioTelefonos
   },
   {
     path: 'emails',

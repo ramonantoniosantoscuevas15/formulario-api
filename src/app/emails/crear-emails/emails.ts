@@ -42,6 +42,11 @@ export class Emails implements OnInit {
   }
 
   guardarCambios(){
+     if(!this.form.valid){
+      return
+    }
+     const email = this.form.value as CrearCorreoDTO
+     this.postFormulario.emit(email)
 
   }
 

@@ -1,1 +1,26 @@
-<p>telefonos works!</p>
+<h2>Crear Telefono</h2>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo</mat-label>
+    <input matInput [formControl] = "form.controls.Tipo">
+    <mat-error>{{obtenerErrorTipo()}}</mat-error>
+  </mat-form-field>
+   <mat-form-field appearance="outline">
+    <mat-label>Codigo Pais</mat-label>
+    <input placeholder="Ex. +809" matInput [formControl] = "form.controls.CodigoPais">
+    <mat-error>{{obtenerErrorCodigoPais()}}</mat-error>
+  </mat-form-field>
+     <mat-form-field appearance="outline">
+    <mat-label>Numero</mat-label>
+    <input type="number" matInput [formControl] = "form.controls.Numero">
+  </mat-form-field>
+  <div class="contenedor-botones">
+    <button mat-flat-button type="submit"
+    [disabled]="form.invalid">
+    guardar Cambios</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div>
+
+
+</form>

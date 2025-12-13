@@ -1,1 +1,42 @@
-<p>dirreciones works!</p>
+
+<form (submit)="guardarCambios()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo:</mat-label>
+    <input matInput placeholder="ej trabajo, casa, etc." [formControl]="form.controls.tipo" />
+    <mat-error>{{obtenerErrorTipo()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Ubicacion:</mat-label>
+    <input matInput [formControl]="form.controls.ubicacion" />
+    <mat-error>{{obtenerErrorubicacion()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Ciudad:</mat-label>
+    <input matInput [formControl]="form.controls.ciudad" />
+    <mat-error>{{obtenerErrorciudad()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Provincia:</mat-label>
+    <input matInput [formControl]="form.controls.provincia" />
+    <mat-error>{{obtenerErrorprovincia()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Codigo Postal:</mat-label>
+    <input matInput [formControl]="form.controls.codigopostal" />
+    <mat-error>{{obtenerErrorcodigopostal()}}</mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Pais:</mat-label>
+    <input matInput [formControl]="form.controls.pais" />
+    <mat-error>{{obtenerErrorpais()}}</mat-error>
+  </mat-form-field>
+   <div class="contenedor-botones">
+    <button mat-flat-button 
+    [disabled]="form.invalid">
+    guardar Cambios</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div>
+
+
+
+</form>

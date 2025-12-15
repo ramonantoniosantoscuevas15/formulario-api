@@ -16,6 +16,7 @@ import { FormularioCategoria } from './categorias/formulario-categoria/formulari
 import { FormularioPersonas } from './personas/formulario-personas/formulario-personas';
 import { FormularioEmail } from './emails/formulario-email/formulario-email';
 import { FormularioTelefonos } from './telefonos/formulario-telefonos/formulario-telefonos';
+import { FiltroPersonas } from './personas/filtro-personas/filtro-personas';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
 
   {path: 'landing',
     component: LandingPage
+  },
+  {
+    path:'personas/filtro',
+    component:FiltroPersonas
   },
   {
     path:'categorias',

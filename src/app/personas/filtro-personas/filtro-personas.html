@@ -5,10 +5,7 @@
     <mat-label>Nombre</mat-label>
     <input matInput [formControl] = "form.controls.nombre">
   </mat-form-field>
-    <mat-form-field appearance="outline">
-    <mat-label>Apellido</mat-label>
-    <input matInput [formControl] = "form.controls.apellido">
-  </mat-form-field>
+
 
     <mat-form-field appearance="outline">
     <mat-label>Categoria</mat-label>
@@ -20,6 +17,8 @@
     </mat-select>
   </mat-form-field>
   <div>
-    <button mat-flat-button class="warn">Limpiar</button>
+    <button (click)="limpiar()" mat-flat-button class="warn">Limpiar</button>
   </div>
 </form>
+
+<app-listado-personas [personas]="personas"></app-listado-personas>

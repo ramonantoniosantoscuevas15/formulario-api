@@ -12,15 +12,12 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './emails.html',
   styleUrl: './emails.css',
 })
-export class Emails implements OnInit {
-   ngOnInit(): void {
-     if (this.modelo !== undefined) {
-      this.form.patchValue(this.modelo)
-    }
-  }
+export class Emails {
+
+
   private fb = inject(FormBuilder)
   @Input()
-  modelo?:CorreoDTO
+  email?:CorreoDTO
 
   @Output()
   postFormulario = new EventEmitter<CrearCorreoDTO>
@@ -41,14 +38,7 @@ export class Emails implements OnInit {
     return""
   }
 
-  guardarCambios(){
-     if(!this.form.valid){
-      return
-    }
-     const email = this.form.value as CrearCorreoDTO
-     this.postFormulario.emit(email)
 
-  }
 
 
 

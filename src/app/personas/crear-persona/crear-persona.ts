@@ -8,11 +8,14 @@ import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones'
 import { CrearPersonaDTO, PersonaDTO } from './personas';
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
 import { SelectorMultiple } from "../../compartidos/componentes/selector-multiple/selector-multiple";
+import { Emails } from "../../emails/crear-emails/emails";
+import { CorreoDTO } from '../../emails/correo';
+import { FormularioEmail } from "../../emails/formulario-email/formulario-email";
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormularioEmail],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -27,6 +30,10 @@ export class CrearPersona implements OnInit {
 
   @Input({ required: true })
   categoriasSeleccionadas!: SelectorMultipleDTO[]
+
+  @Input()
+  emial!:CorreoDTO[]
+
   private router = inject(Router)
   private fb = inject(FormBuilder)
   @Input()
@@ -81,6 +88,7 @@ export class CrearPersona implements OnInit {
     const persona = this.form.value as CrearPersonaDTO
 
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.llave)
+    persona.emial =this.emial
 
     persona.categoriasIds =categoriasIds
 

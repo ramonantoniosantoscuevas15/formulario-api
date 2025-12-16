@@ -1,18 +1,12 @@
 <h2>Crear Correo</h2>
 
-<form (submit)="guardarCambios()" [formGroup]="form">
+<form  [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Correo:</mat-label>
     <input matInput [formControl] = "form.controls.correos"/>
     <mat-error>{{obtenerErrorCorreo()}}</mat-error>
 
   </mat-form-field>
-  <div class="contenedor-botones">
-    <button mat-flat-button 
-    [disabled]="form.invalid">
-    guardarCambios</button>
-    <a mat-stroked-button routerLink="/landing">Cancelar</a>
-
-  </div>
+  
 
 </form>

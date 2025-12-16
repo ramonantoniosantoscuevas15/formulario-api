@@ -10,8 +10,6 @@ import { CrearCorreoDTO } from '../correo';
   styleUrl: './formulario-email.css',
 })
 export class FormularioEmail {
-  guardarCambios(email: CrearCorreoDTO){
-      console.log("Creando Email", email)
-    }
+  //guardarCambios(email: CrearCorreoDTO){console.log("Creando Email", email)}
 
 }

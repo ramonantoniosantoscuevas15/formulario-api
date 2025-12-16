@@ -1,3 +1,5 @@
+import { CorreoDTO } from "../../emails/correo"
+
 export interface PersonaDTO{
   id: number,
   nombre : string,
@@ -9,5 +11,6 @@ export interface CrearPersonaDTO{
   nombre: string,
   apellido: string,
   cedula: string,
-  categoriasIds?: number[]
+  categoriasIds?: number[],
+  emial?: CorreoDTO[]
 }

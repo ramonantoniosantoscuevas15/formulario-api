@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CrearPersona } from "../crear-persona/crear-persona";
 import { CrearPersonaDTO } from '../crear-persona/personas';
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
+import { CorreoDTO } from '../../emails/correo';
 
 @Component({
   selector: 'app-formulario-personas',
@@ -16,8 +17,9 @@ export class FormularioPersonas {
     {llave: 2, valor: 'Visitante'},
     {llave: 3, valor: 'Empleado'},
   ]
+
   guardarCambios(persona: CrearPersonaDTO){
-    console.log("Se creo la Persona", persona)
+    console.log("Se creo la Persona", persona) 
 
   }
 

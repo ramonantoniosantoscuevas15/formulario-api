@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ListadoPersonas } from "../listado-personas/listado-personas";
 import { FiltroPersona } from './filtropersona';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-filtro-personas',
@@ -17,10 +18,25 @@ import { Location } from '@angular/common';
 })
 export class FiltroPersonas implements OnInit {
   ngOnInit(): void {
+    this.leerValoresUrl()
+    this.buscarPersonas(this.form.value as FiltroPersona)
     this.form.valueChanges.subscribe(valores => {
       this.personas = this.personasOriginal
       this.buscarPersonas(valores as FiltroPersona)
+      this.escribirParametrosBusquedaEnUrl(valores as FiltroPersona)
+
     })
+  }
+  escribirParametrosBusquedaEnUrl(valores:FiltroPersona){
+    let queryString=[]
+    if(valores.nombre){
+      queryString.push(`nombre=${encodeURI(valores.nombre) }`)
+    }
+    if(valores.categoriaid !==0){
+      queryString.push(`categoriaid=${valores.categoriaid}`)
+    }
+    this.location.replaceState('personas/filtro',queryString.join('&'))
+
   }
   limpiar(){
     this.form.patchValue({nombre:'',categoriaid:0})
@@ -35,8 +51,21 @@ export class FiltroPersonas implements OnInit {
     }
 
   }
+  leerValoresUrl(){
+    this.activatedRoute.queryParams.subscribe((params:any)=>{
+      var objeto: any={}
+      if(params.nombre){
+        objeto.nombre = params.nombre
+      }
+      if(params.categoriaid){
+        objeto.categoriaid = Number(params.categoriaid)
+      }
+      this.form.patchValue(objeto)
+    })
+  }
   private fb = inject(FormBuilder)
   private location = inject(Location)
+  private activatedRoute = inject(ActivatedRoute)
 
   form = this.fb.group({
     nombre: '',

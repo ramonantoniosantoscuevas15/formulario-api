@@ -17,7 +17,7 @@
     <input matInput [formControl] = "form.controls.cedula"/>
     <mat-error>{{obtenerErrorCedula()}}</mat-error>
   </mat-form-field>
-  <app-formulario-email></app-formulario-email>
+  <app-autocomple-correos [correoSelecionandos]="correosSelecionandos"></app-autocomple-correos>
 
   <h4>Seleccione Las Categorias</h4>
   <app-selector-multiple [Seleccionados]="categoriasSeleccionadas" [NoSeleccionados]="categoriasNoSeleccionadas"></app-selector-multiple>

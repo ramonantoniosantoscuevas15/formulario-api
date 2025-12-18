@@ -1,0 +1,33 @@
+<form>
+  <mat-form-field>
+    <input type="text" placeholder="Selecione las personas" matInput [formControl] ="control" [matAutocomplete]="auto">
+    <mat-autocomplete #auto (optionSelected)="correoSelecionando($event)">
+      @for (email of emails; track $index) {
+        <mat-option [value]="email" >
+          {{email.nombre}}</mat-option>
+      }
+
+    </mat-autocomplete>
+  </mat-form-field>
+
+</form>
+
+@if(correoSelecionandos.length > 0){
+  <table mat-table [dataSource]="correoSelecionandos" class="mat-elevation-z8">
+    <ng-container matColumnDef="nombre">
+      <td mat-cell *matCellDef="let element">
+        {{element.nombre}}
+      </td>
+    </ng-container>
+      <ng-container matColumnDef="correos">
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="outline" style="margin: 10px 0;">
+          <mat-label>Correo</mat-label>
+          <input matInput [(ngModel)]="element.correos"/>
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <tr mat-row *matRowDef="let row; columns: columnasAmostrar"></tr>
+
+  </table>
+}

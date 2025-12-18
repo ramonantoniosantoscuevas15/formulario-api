@@ -2,6 +2,8 @@ import { Component, Input, numberAttribute } from '@angular/core';
 import { CrearPersonaDTO, PersonaDTO } from '../crear-persona/personas';
 import { CrearPersona } from "../crear-persona/crear-persona";
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
+import { AutocompleCorreos } from '../../emails/autocomple-correos/autocomple-correos';
+import { AutocompleCorreosDTO } from '../../emails/correo';
 
 @Component({
   selector: 'app-editar-persona',
@@ -21,6 +23,12 @@ export class EditarPersona {
   categoriasNoSeleccionadas: SelectorMultipleDTO[] = [
     { llave: 1, valor: 'Empleado Mision' },
     { llave: 3, valor: 'Empleado' },
+  ]
+  correosSelecionandos:AutocompleCorreosDTO[]=[
+    {
+      nombre:"ramon",
+      correos:"dgfh@gmailcom"
+    }
   ]
 
   guardarCambios(persona: CrearPersonaDTO) {

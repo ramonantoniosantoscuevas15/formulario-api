@@ -16,11 +16,11 @@ export class Emails {
 
 
   private fb = inject(FormBuilder)
-  @Input()
-  email?:CorreoDTO
+  @Input({required: true})
+  email?:CorreoDTO[]
 
-  @Output()
-  postFormulario = new EventEmitter<CrearCorreoDTO>
+  //@Output()
+  //postFormulario = new EventEmitter<CrearCorreoDTO>
   form = this.fb.group({
     correos:['',{validators:[Validators.required,Validators.email]}]
   })

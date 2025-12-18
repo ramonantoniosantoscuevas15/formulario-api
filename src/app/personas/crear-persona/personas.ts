@@ -1,4 +1,4 @@
-import { CorreoDTO } from "../../emails/correo"
+import { AutocompleCorreosDTO, CorreoDTO, CrearCorreoDTO } from "../../emails/correo"
 
 export interface PersonaDTO{
   id: number,
@@ -12,5 +12,5 @@ export interface CrearPersonaDTO{
   apellido: string,
   cedula: string,
   categoriasIds?: number[],
-  emial?: CorreoDTO[]
+  correos: AutocompleCorreosDTO[]
 }

@@ -9,13 +9,15 @@ import { CrearPersonaDTO, PersonaDTO } from './personas';
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
 import { SelectorMultiple } from "../../compartidos/componentes/selector-multiple/selector-multiple";
 import { Emails } from "../../emails/crear-emails/emails";
-import { CorreoDTO } from '../../emails/correo';
+import { AutocompleCorreosDTO, CorreoDTO, CrearCorreoDTO } from '../../emails/correo';
 import { FormularioEmail } from "../../emails/formulario-email/formulario-email";
+import { CrearCategoriaDTO } from '../../categorias/crear-categorias/categoria';
+import { AutocompleCorreos } from "../../emails/autocomple-correos/autocomple-correos";
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormularioEmail],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, AutocompleCorreos],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -31,8 +33,10 @@ export class CrearPersona implements OnInit {
   @Input({ required: true })
   categoriasSeleccionadas!: SelectorMultipleDTO[]
 
-  @Input()
-  emial!:CorreoDTO[]
+  //@Input()
+  //emial!:CorreoDTO[]
+  @Input({required:true})
+  correosSelecionandos!: AutocompleCorreosDTO[]
 
   private router = inject(Router)
   private fb = inject(FormBuilder)
@@ -88,9 +92,10 @@ export class CrearPersona implements OnInit {
     const persona = this.form.value as CrearPersonaDTO
 
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.llave)
-    persona.emial =this.emial
+
 
     persona.categoriasIds =categoriasIds
+    persona.correos = this.correosSelecionandos
 
     this.postFormulario.emit(persona)
 

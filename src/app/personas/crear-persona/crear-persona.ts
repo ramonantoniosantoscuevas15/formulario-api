@@ -17,7 +17,7 @@ import { AutocompleCorreos } from "../../emails/autocomple-correos/autocomple-co
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, AutocompleCorreos],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Emails], 
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -36,7 +36,9 @@ export class CrearPersona implements OnInit {
   //@Input()
   //emial!:CorreoDTO[]
   @Input({required:true})
-  correosSelecionandos!: AutocompleCorreosDTO[]
+  correosAgregados!:CrearCorreoDTO[]
+
+  //@Input({required:true})correosSelecionandos!: AutocompleCorreosDTO[]
 
   private router = inject(Router)
   private fb = inject(FormBuilder)
@@ -95,7 +97,8 @@ export class CrearPersona implements OnInit {
 
 
     persona.categoriasIds =categoriasIds
-    persona.correos = this.correosSelecionandos
+    //persona.correos = this.correosSelecionandos
+    persona.correos = this.correosAgregados
 
     this.postFormulario.emit(persona)
 

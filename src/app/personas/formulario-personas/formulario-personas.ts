@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CrearPersona } from "../crear-persona/crear-persona";
 import { CrearPersonaDTO } from '../crear-persona/personas';
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
-import { AutocompleCorreosDTO, CorreoDTO } from '../../emails/correo';
+import { AutocompleCorreosDTO, CorreoDTO, CrearCorreoDTO } from '../../emails/correo';
 import { Emails } from '../../emails/crear-emails/emails';
 
 @Component({
@@ -18,7 +18,8 @@ export class FormularioPersonas {
     {llave: 2, valor: 'Visitante'},
     {llave: 3, valor: 'Empleado'},
   ]
-  correoSelecionandos: AutocompleCorreosDTO[]=[] 
+  correosAgregados:CrearCorreoDTO[]=[]
+  //correoSelecionandos: AutocompleCorreosDTO[]=[]
 
   guardarCambios(persona: CrearPersonaDTO){
     console.log("Se creo la Persona", persona)

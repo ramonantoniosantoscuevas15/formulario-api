@@ -3,7 +3,7 @@ import { CrearPersonaDTO, PersonaDTO } from '../crear-persona/personas';
 import { CrearPersona } from "../crear-persona/crear-persona";
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
 import { AutocompleCorreos } from '../../emails/autocomple-correos/autocomple-correos';
-import { AutocompleCorreosDTO } from '../../emails/correo';
+import { AutocompleCorreosDTO, CrearCorreoDTO } from '../../emails/correo';
 
 @Component({
   selector: 'app-editar-persona',
@@ -24,12 +24,10 @@ export class EditarPersona {
     { llave: 1, valor: 'Empleado Mision' },
     { llave: 3, valor: 'Empleado' },
   ]
-  correosSelecionandos:AutocompleCorreosDTO[]=[
-    {
-      nombre:"ramon",
-      correos:"dgfh@gmailcom"
-    }
-  ]
+  //correosSelecionandos:AutocompleCorreosDTO[]=[{ nombre:"ramon",correos:"dgfh@gmailcom" }]
+  correosAgregados:CrearCorreoDTO[] =[{
+    correos:"dgfh@gmailcom"
+  }] 
 
   guardarCambios(persona: CrearPersonaDTO) {
     console.log('editando la perosna', persona)

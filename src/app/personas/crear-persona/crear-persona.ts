@@ -13,11 +13,12 @@ import { AutocompleCorreosDTO, CorreoDTO, CrearCorreoDTO } from '../../emails/co
 import { FormularioEmail } from "../../emails/formulario-email/formulario-email";
 import { CrearCategoriaDTO } from '../../categorias/crear-categorias/categoria';
 import { AutocompleCorreos } from "../../emails/autocomple-correos/autocomple-correos";
+import { Telefonos } from "../../telefonos/telefonos";
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Emails], 
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Emails, Telefonos],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })

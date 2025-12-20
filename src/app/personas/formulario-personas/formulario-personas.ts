@@ -4,6 +4,7 @@ import { CrearPersonaDTO } from '../crear-persona/personas';
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
 import { AutocompleCorreosDTO, CorreoDTO, CrearCorreoDTO } from '../../emails/correo';
 import { Emails } from '../../emails/crear-emails/emails';
+import { CrearTelefonoDTO } from '../../telefonos/telefono';
 
 @Component({
   selector: 'app-formulario-personas',
@@ -19,6 +20,7 @@ export class FormularioPersonas {
     {llave: 3, valor: 'Empleado'},
   ]
   correosAgregados:CrearCorreoDTO[]=[]
+  telefonosAgregados: CrearTelefonoDTO[] = []
   //correoSelecionandos: AutocompleCorreosDTO[]=[]
 
   guardarCambios(persona: CrearPersonaDTO){

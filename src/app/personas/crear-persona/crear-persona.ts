@@ -14,11 +14,13 @@ import { FormularioEmail } from "../../emails/formulario-email/formulario-email"
 import { CrearCategoriaDTO } from '../../categorias/crear-categorias/categoria';
 import { AutocompleCorreos } from "../../emails/autocomple-correos/autocomple-correos";
 import { Telefonos } from "../../telefonos/telefonos";
+import { CrearTelefonoDTO } from '../../telefonos/telefono';
+import { Dirreciones } from "../../dirreciones/dirreciones";
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Emails, Telefonos],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Emails, Telefonos, Dirreciones],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -38,6 +40,8 @@ export class CrearPersona implements OnInit {
   //emial!:CorreoDTO[]
   @Input({required:true})
   correosAgregados!:CrearCorreoDTO[]
+  @Input({required:true})
+  telefonosAgregados!: CrearTelefonoDTO[]
 
   //@Input({required:true})correosSelecionandos!: AutocompleCorreosDTO[]
 
@@ -100,6 +104,7 @@ export class CrearPersona implements OnInit {
     persona.categoriasIds =categoriasIds
     //persona.correos = this.correosSelecionandos
     persona.correos = this.correosAgregados
+    persona.telefonos = this.telefonosAgregados
 
     this.postFormulario.emit(persona)
 

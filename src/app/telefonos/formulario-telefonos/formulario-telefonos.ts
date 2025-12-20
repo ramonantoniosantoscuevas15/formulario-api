@@ -4,7 +4,7 @@ import { Telefonos } from "../telefonos";
 
 @Component({
   selector: 'app-formulario-telefonos',
-  imports: [Telefonos],
+  imports: [],
   templateUrl: './formulario-telefonos.html',
   styleUrl: './formulario-telefonos.css',
 })

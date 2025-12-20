@@ -1,5 +1,5 @@
-
-<form (submit)="guardarCambios()" [formGroup]="form">
+<h2>Crear Dirreciones</h2>
+<form   [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Tipo:</mat-label>
     <input matInput placeholder="ej trabajo, casa, etc." [formControl]="form.controls.tipo" />
@@ -30,12 +30,12 @@
     <input matInput [formControl]="form.controls.pais" />
     <mat-error>{{obtenerErrorpais()}}</mat-error>
   </mat-form-field>
-   <div class="contenedor-botones">
-    <button mat-flat-button 
+   <!-- <div class="contenedor-botones">
+    <button mat-flat-button
     [disabled]="form.invalid">
     guardar Cambios</button>
     <a mat-stroked-button routerLink="/">Cancelar</a>
-  </div>
+  </div> -->
 
 
 

@@ -13,11 +13,11 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 @Component({
   selector: 'app-telefonos',
   //imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule,],
-  imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule, MatAutocompleteModule, MatTableModule, ],
+  imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule, MatAutocompleteModule, MatTableModule,],
   templateUrl: './telefonos.html',
   styleUrl: './telefonos.css',
 })
-export class Telefonos  {
+export class Telefonos {
 
   // ngOnInit(): void {
   //   if (this.modelo !== undefined) {
@@ -69,19 +69,25 @@ export class Telefonos  {
   // }
   control = new FormControl
 
-  telefono: CrearTelefonoDTO[]=[
+  telefono: CrearTelefonoDTO[] = [
     {
-      Tipo:'',
-      CodigoPais:'',
-      Numero:0
+      Tipo: '',
+      CodigoPais: '',
+      Numero: 0
     }
   ]
   @ViewChild(MatTable) table!: MatTable<CrearTelefonoDTO>
-  columnasAmostrar=['Tipo','CodigoPais','Numero']
-  telefonosAgregados:CrearTelefonoDTO[]=[]
+  columnasAmostrar = ['Tipo', 'CodigoPais', 'Numero']
+  @Input({required:true})
+  telefonosAgregados: CrearTelefonoDTO[] = []
 
-  telefonoAgregado(event:MatAutocompleteSelectedEvent){
+  telefonoAgregado(event: MatAutocompleteSelectedEvent) {
     this.telefonosAgregados.push(event.option.value)
+    this.control.patchValue('')
+    if (this.table != undefined) {
+      this.table.renderRows()
+    }
+
 
   }
 

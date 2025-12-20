@@ -1,41 +1,62 @@
 <h2>Crear Dirreciones</h2>
-<form   [formGroup]="form">
+<form (submit)="guardarCambios()"   [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Tipo:</mat-label>
-    <input matInput placeholder="ej trabajo, casa, etc." [formControl]="form.controls.tipo" />
-    <mat-error>{{obtenerErrorTipo()}}</mat-error>
+    <input matInput placeholder="ej trabajo, casa, etc."
+    formControlName="tipo" />
+     @if (isvalidField('tipo')) {
+      <mat-error>{{getFieldError("tipo")}}</mat-error>
+    }
+
+
   </mat-form-field>
+
   <mat-form-field appearance="outline">
     <mat-label>Ubicacion:</mat-label>
-    <input matInput [formControl]="form.controls.ubicacion" />
-    <mat-error>{{obtenerErrorubicacion()}}</mat-error>
+    <input matInput formControlName="ubicacion" />
+     @if (isvalidField('ubicacion')) {
+      <mat-error>{{getFieldError("ubicacion")}}</mat-error>
+    }
+
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Ciudad:</mat-label>
-    <input matInput [formControl]="form.controls.ciudad" />
-    <mat-error>{{obtenerErrorciudad()}}</mat-error>
+    <input matInput formControlName="ciudad" />
+     @if (isvalidField('ciudad')) {
+      <mat-error>{{getFieldError("ciudad")}}</mat-error>
+    }
+
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Provincia:</mat-label>
-    <input matInput [formControl]="form.controls.provincia" />
-    <mat-error>{{obtenerErrorprovincia()}}</mat-error>
+    <input matInput formControlName="provincia" />
+       @if (isvalidField('provincia')) {
+      <mat-error>{{getFieldError("provincia")}}</mat-error>
+    }
+
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Codigo Postal:</mat-label>
-    <input matInput [formControl]="form.controls.codigopostal" />
-    <mat-error>{{obtenerErrorcodigopostal()}}</mat-error>
+    <input matInput formControlName="codigopostal"/>
+       @if (isvalidField('codigopostal')) {
+      <mat-error>{{getFieldError("codigopostal")}}</mat-error>
+    }
+
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Pais:</mat-label>
-    <input matInput [formControl]="form.controls.pais" />
-    <mat-error>{{obtenerErrorpais()}}</mat-error>
+    <input matInput formControlName="pais" />
+       @if (isvalidField('pais')) {
+      <mat-error>{{getFieldError("pais")}}</mat-error>
+    }
+
   </mat-form-field>
-   <!-- <div class="contenedor-botones">
+    <div class="contenedor-botones">
     <button mat-flat-button
     [disabled]="form.invalid">
     guardar Cambios</button>
     <a mat-stroked-button routerLink="/">Cancelar</a>
-  </div> -->
+  </div>
 
 
 

@@ -19,84 +19,49 @@ export class Dirreciones  {
   @Input()
   postDirrecion :CrearDirrecionDTO[]=[]
   private fb = inject(FormBuilder)
-  form = this.fb.group({
-    tipo: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
-    ubicacion: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
-    ciudad: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
-    provincia: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
-    codigopostal: ['', { validators: [Validators.required] }],
-    pais: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
+  form:FormGroup = this.fb.group({
+    tipo: ['', [Validators.required,Validators.minLength(3)]],
+    ubicacion: ['', [Validators.required,Validators.minLength(3)]],
+    ciudad: ['', [Validators.required,Validators.minLength(3)]],
+    provincia: ['',[Validators.required,Validators.minLength(3)]],
+    codigopostal: ['', [Validators.required] ],
+    pais: ['', [Validators.required,Validators.minLength(3)]],
 
   })
 
-  obtenerErrorTipo(): string {
-    let tipo = this.form.controls.tipo
-    if (tipo.hasError('required')) {
-      return "El Campo Tipo es Requerido"
-    }
-    if (tipo.hasError('primeraLetraMayuscula')) {
-      return tipo.getError('primeraLetraMayuscula').mensaje
-    }
-    return ""
+  isvalidField(fieldName: string): boolean | null{
+    return !!this.form.controls[fieldName].errors
+
   }
 
-  obtenerErrorubicacion(): string {
-    let ubicacion = this.form.controls.ubicacion
-    if (ubicacion.hasError('required')) {
-      return "El Campo Ubicacion es Requerido"
+  getFieldError(fieldName:string):string | null{
+    if(!this.form.controls[fieldName]) return null
+
+    const errors = this.form.controls[fieldName].errors ?? {}
+
+    for(const key of Object.keys(errors)){
+      switch(key){
+        case 'required':
+          return 'Este Campo es Requerido'
+          case 'minlength':
+          return `Este Campo Requiere un Minimo de ${errors['minlength'].requiredLength} Caracteres`
+          case 'min':
+          return `Este Campo Requiere un Minimo de ${errors['min'].min} Caracteres`
+      }
     }
-    if (ubicacion.hasError('primeraLetraMayuscula')) {
-      return ubicacion.getError('primeraLetraMayuscula').mensaje
-    }
-    return ""
-  }
-  obtenerErrorciudad(): string {
-    let ciudad = this.form.controls.ciudad
-    if (ciudad.hasError('required')) {
-      return "El Campo Ciudad es Requerido"
-    }
-    if (ciudad.hasError('primeraLetraMayuscula')) {
-      return ciudad.getError('primeraLetraMayuscula').mensaje
-    }
-    return ""
+    return null
   }
 
-  obtenerErrorcodigopostal(): string {
-    let codigopostal = this.form.controls.codigopostal
-    if (codigopostal.hasError('required')) {
-      return "El Campo Codigo Postal es Requerido"
-    }
 
-    return ""
-  }
-
-    obtenerErrorprovincia(): string {
-    let provincia = this.form.controls.provincia
-    if (provincia.hasError('required')) {
-      return "El Campo Provincia es Requerido"
-    }
-    if (provincia.hasError('primeraLetraMayuscula')) {
-      return provincia.getError('primeraLetraMayuscula').mensaje
-    }
-    return ""
-  }
-
-      obtenerErrorpais(): string {
-    let pais = this.form.controls.pais
-    if (pais.hasError('required')) {
-      return "El Campo Pais es Requerido"
-    }
-    if (pais.hasError('primeraLetraMayuscula')) {
-      return pais.getError('primeraLetraMayuscula').mensaje
-    }
-    return ""
-  }
 
 
   guardarCambios(){
+
     if (!this.form.valid) {
       return
     }
+    console.log(this.form.value)
+
     //const dirrecion = this.form.value as CrearDirrecionDTO
     //this.postFormulario.emit(dirrecion)
   }

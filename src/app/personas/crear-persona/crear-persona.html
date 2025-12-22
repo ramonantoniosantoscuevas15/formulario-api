@@ -3,22 +3,29 @@
   <mat-form-field appearance="outline">
     <mat-label>Nombre:</mat-label>
     <input matInput [formControl] = "form.controls.nombre"/>
-    <mat-error>{{obtenerErrorNombre()}}</mat-error>
+    @if (formUtilidades.isvalidField(form,'nombre')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"nombre")}}</mat-error>
+    }
+
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Apellido:</mat-label>
     <input matInput [formControl] = "form.controls.apellido"/>
-    <mat-error>{{obtenerErrorApellido()}}</mat-error>
+    @if (formUtilidades.isvalidField(form,'apellido')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"apellido")}}</mat-error>
+    }
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Cedula:</mat-label>
     <input matInput [formControl] = "form.controls.cedula"/>
-    <mat-error>{{obtenerErrorCedula()}}</mat-error>
+    @if (formUtilidades.isvalidField(form,'cedula')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
+    }
   </mat-form-field>
-  
-  <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos>
+<!-- 
+  <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->
   <app-dirreciones></app-dirreciones>
 
 

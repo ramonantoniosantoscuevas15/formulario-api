@@ -16,11 +16,12 @@ import { AutocompleCorreos } from "../../emails/autocomple-correos/autocomple-co
 import { Telefonos } from "../../telefonos/telefonos";
 import { CrearTelefonoDTO } from '../../telefonos/telefono';
 import { Dirreciones } from "../../dirreciones/dirreciones";
+import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple,  Telefonos, Dirreciones],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Dirreciones],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -47,50 +48,17 @@ export class CrearPersona implements OnInit {
 
   private router = inject(Router)
   private fb = inject(FormBuilder)
+  formUtilidades = FormUtilidades
   @Input()
   modelo?: PersonaDTO
   @Output()
   postFormulario = new EventEmitter<CrearPersonaDTO>
   form = this.fb.group({
-    nombre: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
-    apellido: ['', { validators: [Validators.required, primeraLetraMayuscula()] }],
+    nombre: ['', { validators: [Validators.required,Validators.minLength(3) ] }],
+    apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }]
   })
 
-  obtenerErrorNombre(): string {
-    let nombre = this.form.controls.nombre
-
-    if (nombre.hasError('required')) {
-      return "El Campo Nombre es Requerido"
-    }
-    if (nombre.hasError('primeraLetraMayuscula')) {
-      return nombre.getError('primeraLetraMayuscula').mensaje
-    }
-    return ""
-
-  }
-  obtenerErrorApellido(): string {
-    let apellido = this.form.controls.apellido
-
-    if (apellido.hasError('required')) {
-      return "El Campo Apellido es Requerido"
-    }
-    if (apellido.hasError('primeraLetraMayuscula')) {
-      return apellido.getError('primeraLetraMayuscula').mesaje
-    }
-    return ""
-  }
-  obtenerErrorCedula(): string {
-    let cedula = this.form.controls.cedula
-
-    if (cedula.hasError('required')) {
-      return "El Campo Cedula es Requerido"
-
-    }
-    return ""
-
-
-  }
 
   guardarCambios() {
     if (!this.form.valid) {

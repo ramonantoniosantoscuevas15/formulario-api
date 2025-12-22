@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CrearDirrecionDTO, DirrecionDTO } from './direccion';
+import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
 
 @Component({
   selector: 'app-dirreciones',
@@ -19,7 +20,8 @@ export class Dirreciones  {
   @Input()
   postDirrecion :CrearDirrecionDTO[]=[]
   private fb = inject(FormBuilder)
-  form:FormGroup = this.fb.group({
+  formUtilidades = FormUtilidades
+  form = this.fb.group({
     tipo: ['', [Validators.required,Validators.minLength(3)]],
     ubicacion: ['', [Validators.required,Validators.minLength(3)]],
     ciudad: ['', [Validators.required,Validators.minLength(3)]],
@@ -29,38 +31,15 @@ export class Dirreciones  {
 
   })
 
-  isvalidField(fieldName: string): boolean | null{
-    return !!this.form.controls[fieldName].errors
-
-  }
-
-  getFieldError(fieldName:string):string | null{
-    if(!this.form.controls[fieldName]) return null
-
-    const errors = this.form.controls[fieldName].errors ?? {}
-
-    for(const key of Object.keys(errors)){
-      switch(key){
-        case 'required':
-          return 'Este Campo es Requerido'
-          case 'minlength':
-          return `Este Campo Requiere un Minimo de ${errors['minlength'].requiredLength} Caracteres`
-          case 'min':
-          return `Este Campo Requiere un Minimo de ${errors['min'].min} Caracteres`
-      }
-    }
-    return null
-  }
-
-
-
-
   guardarCambios(){
 
-    if (!this.form.valid) {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched()
       return
     }
     console.log(this.form.value)
+    //funcion para reseteal el formulario
+    this.form.reset()
 
     //const dirrecion = this.form.value as CrearDirrecionDTO
     //this.postFormulario.emit(dirrecion)

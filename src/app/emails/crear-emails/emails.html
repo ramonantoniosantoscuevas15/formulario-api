@@ -1,6 +1,23 @@
 <h2>Crear Correo</h2>
 
-<form>
+<form (ngSubmit)="agregarCorreo()" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input matInput  formControlName="correo">
+    @if (formUtilidades.isvalidField(form,'correo')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
+    }
+
+
+  </mat-form-field>
+
+    <div class="contenedor-botones">
+    <button mat-flat-button>
+    guardar Cambios</button>
+  </div>
+</form>
+
+<!-- <form>
   <mat-form-field>
     <input type="text" placeholder="Agregue un Correo" matInput [formControl] ="control" [matAutocomplete]="auto"/>
     <mat-autocomplete #auto (optionSelected)="correoAgregado($event)">
@@ -27,7 +44,7 @@
     <tr mat-row *matRowDef="let row; columns: columnasAmostrar"></tr>
 
   </table>
-}
+} -->
 
 
 

@@ -20,7 +20,7 @@ import { Dirreciones } from "../../dirreciones/dirreciones";
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Emails, Telefonos, Dirreciones],
+  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple,  Telefonos, Dirreciones],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -38,7 +38,7 @@ export class CrearPersona implements OnInit {
 
   //@Input()
   //emial!:CorreoDTO[]
-  @Input({required:true})
+  @Input()
   correosAgregados!:CrearCorreoDTO[]
   @Input({required:true})
   telefonosAgregados!: CrearTelefonoDTO[]
@@ -103,7 +103,7 @@ export class CrearPersona implements OnInit {
 
     persona.categoriasIds =categoriasIds
     //persona.correos = this.correosSelecionandos
-    persona.correos = this.correosAgregados
+    //persona.correos = this.correosAgregados
     persona.telefonos = this.telefonosAgregados
 
     this.postFormulario.emit(persona)

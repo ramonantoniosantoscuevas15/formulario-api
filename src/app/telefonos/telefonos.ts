@@ -9,11 +9,12 @@ import { primeraLetraMayuscula } from '../compartidos/funciones/validaciones';
 import { CrearCategoriaDTO } from '../categorias/crear-categorias/categoria';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTable, MatTableModule } from '@angular/material/table';
+import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
 
 @Component({
   selector: 'app-telefonos',
   //imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule,],
-  imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule, MatAutocompleteModule, MatTableModule,],
+  imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule, MatAutocompleteModule, MatTableModule,MatButtonModule],
   templateUrl: './telefonos.html',
   styleUrl: './telefonos.css',
 })
@@ -67,29 +68,26 @@ export class Telefonos {
   //   this.postFormulario.emit(telefono)
 
   // }
-  control = new FormControl
 
-  telefono: CrearTelefonoDTO[] = [
-    {
-      Tipo: '',
-      CodigoPais: '',
-      Numero: 0
+  private fb = inject(FormBuilder)
+  formUtilidades = FormUtilidades
+
+  form = this.fb.group({
+    tipo:['',[Validators.required, Validators.minLength(3)]],
+    codigopais:['',[Validators.required, Validators.minLength(3)]],
+    numero:[0,[Validators.required,Validators.min(1)]],
+
+  })
+  guardarCambios(){
+
+    if (this.form.invalid) {
+      this.form.markAllAsTouched()
+      return
     }
-  ]
-  @ViewChild(MatTable) table!: MatTable<CrearTelefonoDTO>
-  columnasAmostrar = ['Tipo', 'CodigoPais', 'Numero']
-  @Input({required:true})
-  telefonosAgregados: CrearTelefonoDTO[] = []
-
-  telefonoAgregado(event: MatAutocompleteSelectedEvent) {
-    this.telefonosAgregados.push(event.option.value)
-    this.control.patchValue('')
-    if (this.table != undefined) {
-      this.table.renderRows()
-    }
-
-
+    console.log(this.form.value)
+    
   }
+
 
 
 

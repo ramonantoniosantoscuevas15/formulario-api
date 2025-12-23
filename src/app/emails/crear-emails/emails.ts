@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, inject, input, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule, FormControl, FormsModule, FormGroup } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
@@ -17,6 +17,7 @@ import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
   styleUrl: './emails.css',
 })
 export class Emails {
+
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
   form = this.fb.group({
@@ -24,8 +25,12 @@ export class Emails {
   })
 
   agregarCorreo(){
-    this.form.markAllAsTouched()
-    console.log(this.form.value)
+     if (!this.form.valid) {
+      this.form.markAllAsTouched()
+      return
+    }
+
+
   }
 
   // control = new FormControl

@@ -1,73 +1,42 @@
 <h2>Crear Telefono</h2>
 
-<form>
-  <mat-form-field>
-    <input placeholder="Agregar Telefono" matInput [formControl] ="control" [matAutocomplete]="auto"/>
-
-    <mat-autocomplete #auto (optionSelected)="telefonoAgregado($event)">
-      @for (telefono of telefono; track $index) {
-        <mat-option value="telefono">
-          <mat-label>Telefono</mat-label>
-          {{telefono.Tipo}}
-
-        </mat-option>
-      }
-
-    </mat-autocomplete>
-  </mat-form-field>
-
-
-
-</form>
-@if(telefonosAgregados.length > 0){
-  <table mat-table [dataSource]="telefonosAgregados" class="mat-elevation-z8">
-    <ng-container matColumnDef="Tipo">
-      <td mat-cell *matCellDef="let element">
-        <mat-form-field appearance="outline" style="margin: 10px 0;">
-          <mat-label>Tipo</mat-label>
-          <input placeholder="ex +809" matInput  [(ngModel)]="element.Tipo"/>
-        </mat-form-field>
-      </td>
-    </ng-container>
-        <ng-container matColumnDef="CodigoPais">
-      <td mat-cell *matCellDef="let element">
-        <mat-form-field appearance="outline" style="margin: 10px 0;">
-          <mat-label>Codigo Pais</mat-label>
-          <input matInput  [(ngModel)]="element.CodigoPais"/>
-        </mat-form-field>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="Numero">
-      <td mat-cell *matCellDef="let element">
-        <mat-form-field appearance="outline" style="margin: 10px 0;">
-          <mat-label>Numero</mat-label>
-          <input type="number" matInput  [(ngModel)]="element.Numero"/>
-        </mat-form-field>
-      </td>
-    </ng-container>
-    <tr mat-row *matRowDef="let row; columns: columnasAmostrar"></tr>
-
-  </table>
-}
-
-
-<!-- <mat-form-field appearance="outline">
+<form (ngSubmit)="guardarCambios()">
+   <mat-form-field appearance="outline">
     <mat-label>Tipo</mat-label>
-    <input matInput [formControl] = "form.controls.Tipo">
-    <mat-error>{{obtenerErrorTipo()}}</mat-error>
+    <input matInput [formControl] = "form.controls.tipo">
+    @if (formUtilidades.isvalidField(form,'tipo')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
+    }
   </mat-form-field>
    <mat-form-field appearance="outline">
     <mat-label>Codigo Pais</mat-label>
-    <input placeholder="Ex. +809" matInput [formControl] = "form.controls.CodigoPais">
-    <mat-error>{{obtenerErrorCodigoPais()}}</mat-error>
+    <input placeholder="Ex. +809" matInput [formControl] = "form.controls.codigopais">
+    @if (formUtilidades.isvalidField(form,'codigopais')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"codigopais")}}</mat-error>
+    }
   </mat-form-field>
      <mat-form-field appearance="outline">
     <mat-label>Numero</mat-label>
-    <input type="number" matInput [formControl] = "form.controls.Numero">
+    <input type="number" matInput [formControl] = "form.controls.numero">
+    @if (formUtilidades.isvalidField(form,'numero')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"numero")}}</mat-error>
+    }
   </mat-form-field>
   <div class="contenedor-botones">
     <button mat-flat-button type="submit"
     [disabled]="form.invalid">
     guardar Cambios</button>
     <a mat-stroked-button routerLink="/">Cancelar</a>
-  </div> -->
+  </div>
+
+
+
+
+
+</form>
+
+
+
+
+
+

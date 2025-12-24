@@ -18,6 +18,9 @@ import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 })
 export class Emails {
 
+  @Input()
+  postCorreo!: CrearCorreoDTO[]
+
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
   form = this.fb.group({
@@ -29,6 +32,8 @@ export class Emails {
       this.form.markAllAsTouched()
       return
     }
+    this.postCorreo = this.form.value as CrearCorreoDTO[]
+
 
 
   }

@@ -11,6 +11,6 @@ import { CrearCorreoDTO } from '../correo';
 })
 export class FormularioEmail {
 
-  //guardarCambios(email: CrearCorreoDTO){console.log("Creando Email", email)}
+  //agregarCorreo(correo: CrearCorreoDTO){console.log("Creando Email", correo)}
 
 }

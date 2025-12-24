@@ -21,6 +21,8 @@ export class FormularioPersonas {
   ]
   correosAgregados:CrearCorreoDTO[]=[]
   telefonosAgregados: CrearTelefonoDTO[] = []
+  postCorreo: CrearCorreoDTO[]=[]
+
   //correoSelecionandos: AutocompleCorreosDTO[]=[]
 
   guardarCambios(persona: CrearPersonaDTO){

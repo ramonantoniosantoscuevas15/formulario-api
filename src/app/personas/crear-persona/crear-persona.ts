@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,11 +17,12 @@ import { Telefonos } from "../../telefonos/telefonos";
 import { CrearTelefonoDTO } from '../../telefonos/telefono';
 import { Dirreciones } from "../../dirreciones/dirreciones";
 import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
+import { JsonPipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, RouterLink, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, Dirreciones],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple,FormsModule],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -43,6 +44,8 @@ export class CrearPersona implements OnInit {
   correosAgregados!:CrearCorreoDTO[]
   @Input({required:true})
   telefonosAgregados!: CrearTelefonoDTO[]
+  @Input()
+  correos!: CrearCorreoDTO[]
 
   //@Input({required:true})correosSelecionandos!: AutocompleCorreosDTO[]
 
@@ -56,7 +59,8 @@ export class CrearPersona implements OnInit {
   form = this.fb.group({
     nombre: ['', { validators: [Validators.required,Validators.minLength(3) ] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
-    cedula: ['', { validators: [Validators.required] }]
+    cedula: ['', { validators: [Validators.required] }],
+    correo: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]]
   })
 
 
@@ -72,6 +76,7 @@ export class CrearPersona implements OnInit {
     persona.categoriasIds =categoriasIds
     //persona.correos = this.correosSelecionandos
     //persona.correos = this.correosAgregados
+    //persona.correos = this.correos
     persona.telefonos = this.telefonosAgregados
 
     this.postFormulario.emit(persona)

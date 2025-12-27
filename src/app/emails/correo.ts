@@ -1,16 +1,16 @@
 import { AutocompleCorreos } from './autocomple-correos/autocomple-correos';
 export interface CorreoDTO{
   id:number,
-  correos:string,
+  correo:string,
 
 }
 
 export interface CrearCorreoDTO{
-  correos?:string
+  correo?:string
 }
 
 export interface AutocompleCorreosDTO{
-  
+
   nombre:string,
   correos:string
 }

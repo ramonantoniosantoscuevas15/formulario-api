@@ -27,7 +27,7 @@ export class EditarPersona {
   ]
   //correosSelecionandos:AutocompleCorreosDTO[]=[{ nombre:"ramon",correos:"dgfh@gmailcom" }]
   correosAgregados:CrearCorreoDTO[] =[{
-    correos:"dgfh@gmailcom"
+    correo:"dgfh@gmailcom"
   }]
 
   telefonosAgregados: CrearTelefonoDTO[] = [{

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, input, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule, FormControl, FormsModule, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, inject, input, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule, FormControl, FormsModule, FormGroup, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
 import { CorreoDTO, CrearCorreoDTO } from '../correo';
@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
+import { Subscriber, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-emails',
@@ -15,11 +16,53 @@ import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
   imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule, MatAutocompleteModule, MatTableModule,MatButtonModule],
   templateUrl: './emails.html',
   styleUrl: './emails.css',
-})
-export class Emails {
+  providers:[
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting:forwardRef(() => Emails),
+      multi:true
 
+
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting:forwardRef(() => Emails),
+      multi:true
+
+
+    },
+
+  ]
+})
+export class Emails implements OnInit, ControlValueAccessor,Validator {
+  validate(control: AbstractControl): ValidationErrors | null {
+    return this.form.valid ? null: {invalidEmails: true}
+  }
+
+  private sub?: Subscription
+  onTouchedCb?: ()=> void
+  writeValue(obj: any): void {
+    obj && this.form.setValue(obj,{emitEvent: false})
+  }
+  registerOnChange(fn: any): void {
+   this.sub = this.form.valueChanges.subscribe(fn)
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouchedCb = fn
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    isDisabled ? this.form.disable() : this.form.enable()
+  }
+  ngOnDestroy():void{
+    this.sub?.unsubscribe()
+  }
+  ngOnInit(): void {
+
+  }
   @Input()
-  postCorreo!: CrearCorreoDTO[]
+  legend=''
+
+
 
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
@@ -32,7 +75,7 @@ export class Emails {
       this.form.markAllAsTouched()
       return
     }
-    this.postCorreo = this.form.value as CrearCorreoDTO[]
+
 
 
 

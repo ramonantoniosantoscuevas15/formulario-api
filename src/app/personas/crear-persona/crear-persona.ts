@@ -18,11 +18,12 @@ import { CrearTelefonoDTO } from '../../telefonos/telefono';
 import { Dirreciones } from "../../dirreciones/dirreciones";
 import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 import { JsonPipe } from '@angular/common';
+import { pipe } from 'rxjs';
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple,FormsModule],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails,JsonPipe],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -60,7 +61,10 @@ export class CrearPersona implements OnInit {
     nombre: ['', { validators: [Validators.required,Validators.minLength(3) ] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }],
-    correo: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]]
+    emails:{
+      correo:''
+    }
+
   })
 
 
@@ -77,7 +81,7 @@ export class CrearPersona implements OnInit {
     //persona.correos = this.correosSelecionandos
     //persona.correos = this.correosAgregados
     //persona.correos = this.correos
-    persona.telefonos = this.telefonosAgregados
+    //persona.telefonos = this.telefonosAgregados
 
     this.postFormulario.emit(persona)
 

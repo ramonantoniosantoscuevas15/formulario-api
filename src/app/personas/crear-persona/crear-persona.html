@@ -24,15 +24,8 @@
       <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
-  <h2>Crear Correo</h2>
-  <mat-form-field appearance="outline">
-    <mat-label>Correo</mat-label>
-    <input matInput  formControlName="correo" [(ngModel)]="correos">
-    @if (formUtilidades.isvalidField(form,'correo')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
-    }
+  <app-emails formControlName="emails"legend="Correo"></app-emails>
 
-  </mat-form-field>
 <!--
   <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->
   <!-- <app-dirreciones></app-dirreciones> -->
@@ -50,6 +43,10 @@
 
   </div>
 </form>
+<h2>Form Valid: </h2>
+<h2>Form Status: </h2>
 
+<pre>{{ form.value| json }}</pre>
+<strong>Status:</strong> {{ form.status }}
 
 

@@ -1,15 +1,16 @@
 <h2>Crear Correo</h2>
 
-<form (ngSubmit)="agregarCorreo()" [formGroup]="form">
+<form  [formGroup]="form">
+    <fieldset >
+    <legend>{{legend}}</legend>
   <mat-form-field appearance="outline">
     <mat-label>Correo</mat-label>
-    <input matInput  formControlName="correo">
+    <input matInput  formControlName="correo" (blur)="onTouchedCb">
     @if (formUtilidades.isvalidField(form,'correo')) {
       <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
     }
-
-
-  </mat-form-field>
+  </mat-form-field> 
+  </fieldset>
 
 
 

@@ -46,7 +46,7 @@ export class CrearPersona implements OnInit {
   @Input({required:true})
   telefonosAgregados!: CrearTelefonoDTO[]
   @Input()
-  correos!: CrearCorreoDTO[]
+  postcorreos!: CrearCorreoDTO[]
 
   //@Input({required:true})correosSelecionandos!: AutocompleCorreosDTO[]
 
@@ -82,6 +82,7 @@ export class CrearPersona implements OnInit {
     //persona.correos = this.correosAgregados
     //persona.correos = this.correos
     //persona.telefonos = this.telefonosAgregados
+    
 
     this.postFormulario.emit(persona)
 

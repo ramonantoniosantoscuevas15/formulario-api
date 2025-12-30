@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, inject, input, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, forwardRef, inject, input, Input, OnInit, output, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule, FormControl, FormsModule, FormGroup, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatFormField, MatInput, MatInputModule } from '@angular/material/input';
@@ -57,12 +57,15 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
     this.sub?.unsubscribe()
   }
   ngOnInit(): void {
+    if(this.modeloCorreo !== undefined){
+      this.form.patchValue(this.modeloCorreo)
+    }
+
 
   }
-  
+  @Input() modeloCorreo? : CorreoDTO
 
-
-
+  @Output() postCorreo = new EventEmitter<CrearCorreoDTO>()
 
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
@@ -72,13 +75,11 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
 
   agregarCorreo(){
      if (!this.form.valid) {
-      this.form.markAllAsTouched()
+
       return
     }
-
-
-
-
+    const correo = this.form.value as CrearCorreoDTO
+    this.postCorreo.emit(correo)
   }
 
   // control = new FormControl

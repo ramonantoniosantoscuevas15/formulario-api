@@ -1,6 +1,6 @@
 
 
-<form  [formGroup]="form">
+<form (submit)="agregarCorreo()"  [formGroup]="form">
     <fieldset >
     <legend>Correo</legend>
   <mat-form-field appearance="outline">
@@ -10,7 +10,7 @@
       <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
     }
   </mat-form-field>
-  </fieldset>
+  </fieldset> 
 
 
 

@@ -6,7 +6,7 @@ export interface CorreoDTO{
 }
 
 export interface CrearCorreoDTO{
-  correo?:string
+  correo:string
 }
 
 export interface AutocompleCorreosDTO{

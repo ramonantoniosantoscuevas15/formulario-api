@@ -3,7 +3,9 @@
   <mat-form-field appearance="outline">
     <mat-label>tipo:</mat-label>
     <input matInput [formControl] = "form.controls.tipo"/>
-    <mat-error>{{obtenerErrorTipo()}}</mat-error>
+    @if (formUtilidades.isvalidField(form,'tipo')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
+    }
 
   </mat-form-field>
   <div class="contenedor-botones">

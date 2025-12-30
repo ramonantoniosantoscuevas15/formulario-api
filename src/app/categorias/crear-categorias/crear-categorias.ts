@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { CrearCategoriaDTO } from './categoria';
 import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones';
+import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 
 @Component({
   selector: 'app-crear-categorias',
@@ -18,6 +19,7 @@ export class CrearCategorias implements OnInit {
       this.form.patchValue(this.modelo)
     }
   }
+  formUtilidades = FormUtilidades
   @Input()
   modelo?: CrearCategoriaDTO
 
@@ -27,20 +29,8 @@ export class CrearCategorias implements OnInit {
   private fb = inject(FormBuilder)
 
   form= this.fb.group({
-    tipo:['',{validators:[Validators.required,primeraLetraMayuscula()]}]
+    tipo:['', { validators: [Validators.required,Validators.minLength(3) ] }],
   })
-
-  obtenerErrorTipo(): string{
-    let tipo = this.form.controls.tipo
-
-     if(tipo.hasError('required')){
-      return "El Campo Nombre es Requerido"
-    }
-    if(tipo.hasError('primeraLetraMayuscula')){
-      return tipo.getError('primeraLetraMayuscula').mensaje
-    }
-    return ""
-  }
 
   guardarCambios(){
     if(!this.form.valid){

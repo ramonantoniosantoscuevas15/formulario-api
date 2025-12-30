@@ -23,7 +23,7 @@ import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails,JsonPipe],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails, JsonPipe, Dirreciones],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -63,6 +63,14 @@ export class CrearPersona implements OnInit {
     cedula: ['', { validators: [Validators.required] }],
     emails:{
       correo:''
+    },
+    dirreciones:{
+      tipo:'',
+      ubicacion:'',
+      ciudad:'',
+      provincia:'',
+      codigopostal:'',
+      pais:''
     }
 
   })
@@ -82,7 +90,7 @@ export class CrearPersona implements OnInit {
     //persona.correos = this.correosAgregados
     //persona.correos = this.correos
     //persona.telefonos = this.telefonosAgregados
-    
+
 
     this.postFormulario.emit(persona)
 

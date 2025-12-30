@@ -1,4 +1,4 @@
-<h2>Crear Persona</h2>
+<h2>Ingrese los Datos de la Persona</h2>
 <form (ngSubmit)="guardarCambios()"[formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Nombre:</mat-label>
@@ -24,7 +24,8 @@
       <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
-  <app-emails formControlName="emails"legend="Correo"></app-emails>
+  <app-emails formControlName="emails"></app-emails>
+  <app-dirreciones formControlName="dirreciones"></app-dirreciones>
 
 <!--
   <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->

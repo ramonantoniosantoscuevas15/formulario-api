@@ -1,20 +1,58 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, inject, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormArray, FormBuilder, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors, Validator, Validators } from '@angular/forms';
 import { primeraLetraMayuscula } from '../compartidos/funciones/validaciones';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CrearDirrecionDTO, DirrecionDTO } from './direccion';
 import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dirreciones',
   imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule,],
   templateUrl: './dirreciones.html',
   styleUrl: './dirreciones.css',
-})
-export class Dirreciones  {
+  providers:[
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting:forwardRef(() => Dirreciones),
+      multi:true
 
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting:forwardRef(() => Dirreciones),
+      multi:true
+
+
+    },
+  ]
+})
+export class Dirreciones implements OnInit,ControlValueAccessor,Validator  {
+  validate(control: AbstractControl): ValidationErrors | null {
+    return this.form.valid ? null: {invalidDirreciones: true}
+  }
+ private sub?: Subscription
+   onTouchedCb?: ()=> void
+   writeValue(obj: any): void {
+     obj && this.form.setValue(obj,{emitEvent: false})
+   }
+   registerOnChange(fn: any): void {
+    this.sub = this.form.valueChanges.subscribe(fn)
+   }
+   registerOnTouched(fn: any): void {
+     this.onTouchedCb = fn
+   }
+   setDisabledState?(isDisabled: boolean): void {
+     isDisabled ? this.form.disable() : this.form.enable()
+   }
+   ngOnDestroy():void{
+     this.sub?.unsubscribe()
+   }
+   ngOnInit(): void {
+
+   }
 
 
   @Input()

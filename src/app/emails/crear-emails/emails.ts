@@ -59,8 +59,8 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
   ngOnInit(): void {
 
   }
-  @Input()
-  legend=''
+  
+
 
 
 

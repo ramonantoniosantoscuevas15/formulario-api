@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, EventEmitter, forwardRef, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors, Validator, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,6 +10,7 @@ import { CrearCategoriaDTO } from '../categorias/crear-categorias/categoria';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-telefonos',
@@ -17,57 +18,46 @@ import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
   imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule, MatAutocompleteModule, MatTableModule,MatButtonModule],
   templateUrl: './telefonos.html',
   styleUrl: './telefonos.css',
+  providers:[
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting:forwardRef(() => Telefonos),
+      multi:true
+
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting:forwardRef(() => Telefonos),
+      multi:true
+    }
+  ]
 })
-export class Telefonos {
+export class Telefonos implements OnInit,ControlValueAccessor,Validator {
+  validate(control: AbstractControl): ValidationErrors | null {
+      return this.form.valid ? null: {invalidTelefonos: true}
+    }
+   private sub?: Subscription
+     onTouchedCb?: ()=> void
+     writeValue(obj: any): void {
+       obj && this.form.setValue(obj,{emitEvent: false})
+     }
+     registerOnChange(fn: any): void {
+      this.sub = this.form.valueChanges.subscribe(fn)
+     }
+     registerOnTouched(fn: any): void {
+       this.onTouchedCb = fn
+     }
+     setDisabledState?(isDisabled: boolean): void {
+       isDisabled ? this.form.disable() : this.form.enable()
+     }
+     ngOnDestroy():void{
+       this.sub?.unsubscribe()
+     }
+     ngOnInit(): void {
 
-  // ngOnInit(): void {
-  //   if (this.modelo !== undefined) {
-  //     this.form.patchValue(this.modelo)
-  //   }
-  // }
+     }
 
-  // private fb = inject(FormBuilder)
 
-  // @Input()
-  // modelo?: TelefonoDTO
-
-  // @Output()
-  // postFormulario = new EventEmitter<CrearTelefonoDTO>
-
-  // form = this.fb.group({
-  //   Tipo:['',{validators: [Validators.required,primeraLetraMayuscula()]}],
-  //   CodigoPais:['',{validators:[Validators.required]}],
-  //   Numero:[0,{validators:[Validators.required,Validators.min(1)]}]
-  // })
-
-  // obtenerErrorTipo():string{
-  //   let Tipo = this.form.controls.Tipo
-
-  //   if(Tipo.hasError('required')){
-  //     return "El Campo Tipo es Requerido"
-  //   }
-  //   if(Tipo.hasError('primeraLetraMayuscula')){
-  //     return Tipo.getError('primeraLetraMayuscula').mensaje
-  //   }
-  //   return ""
-  // }
-
-  // obtenerErrorCodigoPais():string{
-  //   let CodigoPais = this.form.controls.CodigoPais
-
-  //   if(CodigoPais.hasError('required')){
-  //     return "El Campo Codigo Pais es Requerido"
-  //   }
-  //   return ""
-  // }
-  // guardarCambios(){
-  //   if (!this.form.valid) {
-  //     return
-  //   }
-  //   const telefono = this.form.value as CrearTelefonoDTO
-  //   this.postFormulario.emit(telefono)
-
-  // }
 
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
@@ -85,7 +75,7 @@ export class Telefonos {
       return
     }
     console.log(this.form.value)
-    
+
   }
 
 

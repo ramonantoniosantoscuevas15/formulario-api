@@ -23,7 +23,7 @@ import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails, JsonPipe, Dirreciones],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails, JsonPipe, Dirreciones, Telefonos],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -41,12 +41,8 @@ export class CrearPersona implements OnInit {
 
   //@Input()
   //emial!:CorreoDTO[]
-  @Input()
-  correosAgregados!:CrearCorreoDTO[]
-  @Input({required:true})
-  telefonosAgregados!: CrearTelefonoDTO[]
-  @Input()
-  postcorreos!: CrearCorreoDTO[]
+  
+
 
   //@Input({required:true})correosSelecionandos!: AutocompleCorreosDTO[]
 
@@ -71,7 +67,13 @@ export class CrearPersona implements OnInit {
       provincia:'',
       codigopostal:'',
       pais:''
-    }
+    },
+    telefonos:{
+      tipo:'',
+      codigopais:'',
+      numero:0
+
+    },
 
   })
 

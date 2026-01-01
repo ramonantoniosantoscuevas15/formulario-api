@@ -56,6 +56,7 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
      ngOnInit(): void {
       if (this.modeloTelefono !== undefined) {
         
+
       }
 
      }

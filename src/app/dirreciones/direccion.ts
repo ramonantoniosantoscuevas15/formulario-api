@@ -5,7 +5,8 @@ export interface DirrecionDTO {
   Ciudad: string,
   Provincia: string,
   CodigoPostal: string,
-  Pais: string
+  Pais: string,
+  idPersona:number
 }
 
 export interface CrearDirrecionDTO {

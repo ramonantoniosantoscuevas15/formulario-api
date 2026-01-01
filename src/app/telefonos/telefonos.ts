@@ -54,8 +54,14 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
        this.sub?.unsubscribe()
      }
      ngOnInit(): void {
+      if (this.modeloTelefono !== undefined) {
+        
+      }
 
      }
+
+     @Input() modeloTelefono ? : TelefonoDTO
+     @Output() postTelefono = new EventEmitter<CrearTelefonoDTO>()
 
 
 
@@ -71,10 +77,12 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
   guardarCambios(){
 
     if (this.form.invalid) {
-      this.form.markAllAsTouched()
+
       return
     }
-    console.log(this.form.value)
+    const telefono = this.form.value as CrearTelefonoDTO
+    this.postTelefono.emit(telefono)
+
 
   }
 

@@ -13,71 +13,78 @@ import { Subscription } from 'rxjs';
   imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule,],
   templateUrl: './dirreciones.html',
   styleUrl: './dirreciones.css',
-  providers:[
+  providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting:forwardRef(() => Dirreciones),
-      multi:true
+      useExisting: forwardRef(() => Dirreciones),
+      multi: true
 
     },
     {
       provide: NG_VALIDATORS,
-      useExisting:forwardRef(() => Dirreciones),
-      multi:true
+      useExisting: forwardRef(() => Dirreciones),
+      multi: true
 
 
     },
   ]
 })
-export class Dirreciones implements OnInit,ControlValueAccessor,Validator  {
+export class Dirreciones implements OnInit, ControlValueAccessor, Validator {
   validate(control: AbstractControl): ValidationErrors | null {
-    return this.form.valid ? null: {invalidDirreciones: true}
+    return this.form.valid ? null : { invalidDirreciones: true }
   }
- private sub?: Subscription
-   onTouchedCb?: ()=> void
-   writeValue(obj: any): void {
-     obj && this.form.setValue(obj,{emitEvent: false})
-   }
-   registerOnChange(fn: any): void {
+  private sub?: Subscription
+  onTouchedCb?: () => void
+  writeValue(obj: any): void {
+    obj && this.form.setValue(obj, { emitEvent: false })
+  }
+  registerOnChange(fn: any): void {
     this.sub = this.form.valueChanges.subscribe(fn)
-   }
-   registerOnTouched(fn: any): void {
-     this.onTouchedCb = fn
-   }
-   setDisabledState?(isDisabled: boolean): void {
-     isDisabled ? this.form.disable() : this.form.enable()
-   }
-   ngOnDestroy():void{
-     this.sub?.unsubscribe()
-   }
-   ngOnInit(): void {
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouchedCb = fn
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    isDisabled ? this.form.disable() : this.form.enable()
+  }
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe()
+  }
+  ngOnInit(): void {
+    if (this.modeloDirrecion !== undefined) {
 
-   }
+    }
+  }
+  @Input() modeloDirrecion ? : DirrecionDTO
+
+  @Output() postDirreccion = new EventEmitter<CrearDirrecionDTO>()
 
 
-  @Input()
-  postDirrecion :CrearDirrecionDTO[]=[]
+
   private fb = inject(FormBuilder)
+
+
   formUtilidades = FormUtilidades
   form = this.fb.group({
-    tipo: ['', [Validators.required,Validators.minLength(3)]],
-    ubicacion: ['', [Validators.required,Validators.minLength(3)]],
-    ciudad: ['', [Validators.required,Validators.minLength(3)]],
-    provincia: ['',[Validators.required,Validators.minLength(3)]],
-    codigopostal: ['', [Validators.required] ],
-    pais: ['', [Validators.required,Validators.minLength(3)]],
+    tipo: ['', [Validators.required, Validators.minLength(3)]],
+    ubicacion: ['', [Validators.required, Validators.minLength(3)]],
+    ciudad: ['', [Validators.required, Validators.minLength(3)]],
+    provincia: ['', [Validators.required, Validators.minLength(3)]],
+    codigopostal: ['', [Validators.required]],
+    pais: ['', [Validators.required, Validators.minLength(3)]],
 
   })
 
-  guardarCambios(){
+  guardarDirrecion() {
 
-    if (this.form.invalid) {
-      this.form.markAllAsTouched()
+    if (!this.form.valid) {
+
       return
     }
-    console.log(this.form.value)
+    const dirreciones = this.form.value as CrearDirrecionDTO
+    this.postDirreccion.emit(dirreciones)
     //funcion para reseteal el formulario
-    this.form.reset()
+    //this.form.reset()
 
     //const dirrecion = this.form.value as CrearDirrecionDTO
     //this.postFormulario.emit(dirrecion)

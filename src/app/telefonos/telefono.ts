@@ -2,7 +2,8 @@ export interface TelefonoDTO{
   id : number,
   Tipo: string,
   CodigoPais: string,
-  Numero: number
+  Numero: number,
+  idPersona:number
 }
 
 export interface CrearTelefonoDTO{

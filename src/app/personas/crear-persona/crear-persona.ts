@@ -41,7 +41,7 @@ export class CrearPersona implements OnInit {
 
   //@Input()
   //emial!:CorreoDTO[]
-  
+
 
 
   //@Input({required:true})correosSelecionandos!: AutocompleCorreosDTO[]

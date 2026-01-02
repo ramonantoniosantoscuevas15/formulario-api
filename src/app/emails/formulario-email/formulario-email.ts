@@ -5,12 +5,12 @@ import { CrearCorreoDTO } from '../correo';
 
 @Component({
   selector: 'app-formulario-email',
-  imports: [],
+  imports: [Emails],
   templateUrl: './formulario-email.html',
   styleUrl: './formulario-email.css',
 })
 export class FormularioEmail {
 
-  //agregarCorreo(correo: CrearCorreoDTO){console.log("Creando Email", correo)}
+  agregarCorreo(correo: CrearCorreoDTO){console.log("Creando Email", correo)}
 
 }

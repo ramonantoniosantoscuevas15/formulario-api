@@ -28,4 +28,10 @@ fieldset{
 
 
 }
+.indice-elementos{
+  margin-top:1rem;
+}
 
+.indice-elementos a{
+  margin-right:1rem;
+}

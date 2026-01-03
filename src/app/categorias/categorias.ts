@@ -22,6 +22,16 @@ export class Categorias {
     return this.http.get<CategoriaDTO[]>(this.urlBase + '/Obtener Catalogo',{params:queryparams, observe:'response'})
   }
 
+  public obtenerPorid(id:number):Observable<CategoriaDTO>{
+    return this.http.get<CategoriaDTO>(`${this.urlBase + '/Obtener Categoria por id'}/${id}`)
+
+  }
+
+  public actualizar(id:number,categoria: CrearCategoriaDTO){
+    return this.http.put(`${this.urlBase + '/Actualizar Categoria'}/${id}`,categoria)
+
+  }
+
   public crearCategoria(categoria: CrearCategoriaDTO){
     return this.http.post(this.urlBase + '/Agregar Categoria',categoria)
   }

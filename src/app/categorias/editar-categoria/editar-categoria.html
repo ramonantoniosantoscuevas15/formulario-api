@@ -1,1 +1,8 @@
-El di de la categoria es: {{id}}
+<h2>Editar Categoria</h2>
+@if(categoria){
+  <app-crear-categorias [modelo]="categoria" (postFormulario)="guardarCambios($event)"></app-crear-categorias>
+
+}
+@else {
+  <app-cargando></app-cargando>
+}

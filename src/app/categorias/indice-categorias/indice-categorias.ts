@@ -17,11 +17,11 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
   styleUrl: './indice-categorias.css',
 })
 export class IndiceCategorias {
-  categoriasService = inject(Categorias)
+  private categoriasServices = inject(Categorias)
   categoriasAgrupadas!: CategoriaDTO[]
   columnasAMostrar = ['id','tipo','acciones']
-  paginacion:PaginacionDTO ={pagina:1,recordsPorPagina:5}
-  cantidadTotalRegistros!:number
+   paginacion:PaginacionDTO ={pagina:1,recordsPorPagina:5}
+   cantidadTotalRegistros!:number
 
 
   constructor(){
@@ -29,11 +29,11 @@ export class IndiceCategorias {
 
   }
   Cargarregistros(){
-    this.categoriasService.obtenerTodos(this.paginacion).subscribe((respuesta:HttpResponse<CategoriaDTO[]>)=>
+    this.categoriasServices.obtenerTodos(this.paginacion).subscribe((respuesta:HttpResponse<CategoriaDTO[]>)=>
     {
       this.categoriasAgrupadas = respuesta.body as CategoriaDTO[]
       const cabecera = respuesta.headers.get('cantidad-total-registros') as string
-      this.cantidadTotalRegistros = parseInt(cabecera,5)
+      this.cantidadTotalRegistros = parseInt(cabecera,10)
 
     }
     )

@@ -17,7 +17,7 @@ export class Categorias {
   private urlBase = environment.apiUrl
   constructor() {}
 
-  public obtenerTodos(paginacion: PaginacionDTO): Observable<HttpResponse< CategoriaDTO[]>>{
+  public obtenerTodos(paginacion: PaginacionDTO): Observable<HttpResponse<CategoriaDTO[]>>{
     let queryparams = contruirQueryParams(paginacion)
     return this.http.get<CategoriaDTO[]>(this.urlBase + '/Obtener Catalogo',{params:queryparams, observe:'response'})
   }

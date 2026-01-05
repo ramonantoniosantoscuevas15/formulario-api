@@ -9,16 +9,18 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpResponse } from '@angular/common/http';
 import { PaginacionDTO } from '../../compartidos/modelos/Paginaciondto';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { Cargando } from "../../compartidos/componentes/cargando/cargando";
 
 @Component({
   selector: 'app-indice-categorias',
-  imports: [RouterLink, MatButtonModule, ListadoGenerico,MatTableModule,MatPaginatorModule],
+  imports: [RouterLink, MatButtonModule, ListadoGenerico, MatTableModule, MatPaginatorModule, SweetAlert2Module],
   templateUrl: './indice-categorias.html',
   styleUrl: './indice-categorias.css',
 })
 export class IndiceCategorias {
   private categoriasServices = inject(Categorias)
-  categoriasAgrupadas!: CategoriaDTO[]
+  categorias!: CategoriaDTO[]
   columnasAMostrar = ['id','tipo','acciones']
    paginacion:PaginacionDTO ={pagina:1,recordsPorPagina:5}
    cantidadTotalRegistros!:number
@@ -31,8 +33,8 @@ export class IndiceCategorias {
   Cargarregistros(){
     this.categoriasServices.obtenerTodos(this.paginacion).subscribe((respuesta:HttpResponse<CategoriaDTO[]>)=>
     {
-      this.categoriasAgrupadas = respuesta.body as CategoriaDTO[]
-      const cabecera = respuesta.headers.get('cantidad-total-registros') as string
+      this.categorias = respuesta.body as CategoriaDTO[]
+      const cabecera = respuesta.headers.get("cantidadTotalRegistros") as string
       this.cantidadTotalRegistros = parseInt(cabecera,10)
 
     }
@@ -42,6 +44,14 @@ export class IndiceCategorias {
   actualizarPaginacion(datos:PageEvent){
     this.paginacion = {pagina: datos.pageIndex+1,recordsPorPagina: datos.pageSize}
     this.Cargarregistros()
+  }
+
+  borrar(id:number){
+    this.categoriasServices.borrar(id).subscribe(()=>{
+      this.paginacion = {pagina:1,recordsPorPagina:5};
+      this.Cargarregistros();
+    }
+    )
   }
 
 }

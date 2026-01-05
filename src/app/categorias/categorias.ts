@@ -36,5 +36,9 @@ export class Categorias {
     return this.http.post(this.urlBase + '/Agregar Categoria',categoria)
   }
 
+  public borrar(id:number){
+    return this.http.delete(`${this.urlBase + '/Borrar Categoria'}/${id}`)
+  }
+
 
 }

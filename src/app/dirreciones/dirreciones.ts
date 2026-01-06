@@ -51,11 +51,14 @@ export class Dirreciones implements OnInit, ControlValueAccessor, Validator {
     this.sub?.unsubscribe()
   }
   ngOnInit(): void {
-    if (this.modeloDirrecion !== undefined) {
+    if(this.modeloDirrecion !== undefined){
+      this.form.patchValue(this.modeloDirrecion)
 
     }
+
   }
-  @Input() modeloDirrecion ? : DirrecionDTO
+  @Input()
+ modeloDirrecion?: DirrecionDTO
 
   @Output() postDirreccion = new EventEmitter<CrearDirrecionDTO>()
 

@@ -1,13 +1,13 @@
 export interface TelefonoDTO{
   id : number,
-  Tipo: string,
-  CodigoPais: string,
-  Numero: number,
+  tipo: string,
+  codigoPais: string,
+  numero: number,
   idPersona:number
 }
 
 export interface CrearTelefonoDTO{
-  Tipo: string,
-  CodigoPais: string,
-  Numero: number
+  tipo: string,
+  codigoPais: string,
+  numero: number
 }

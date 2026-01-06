@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { CrearCategoriaDTO } from './categoria';
+import { CategoriaDTO, CrearCategoriaDTO } from './categoria';
 import { primeraLetraMayuscula } from '../../compartidos/funciones/validaciones';
 import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 
@@ -21,7 +21,7 @@ export class CrearCategorias implements OnInit {
   }
   formUtilidades = FormUtilidades
   @Input()
-  modelo?: CrearCategoriaDTO
+  modelo?: CategoriaDTO
 
   @Output()
   postFormulario = new EventEmitter<CrearCategoriaDTO>()

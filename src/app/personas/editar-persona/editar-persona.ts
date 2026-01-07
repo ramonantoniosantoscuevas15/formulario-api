@@ -31,9 +31,9 @@ export class EditarPersona {
   }]
 
   telefonosAgregados: CrearTelefonoDTO[] = [{
-    Tipo:"Trabajo",
-    CodigoPais:"+809",
-    Numero:151030
+    tipo:"Trabajo",
+    codigoPais:"+809",
+    numero:151030
   }]
 
   guardarCambios(persona: CrearPersonaDTO) {

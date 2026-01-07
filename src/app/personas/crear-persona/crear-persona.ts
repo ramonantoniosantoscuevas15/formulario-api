@@ -23,7 +23,7 @@ import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails, JsonPipe, Dirreciones, Telefonos],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails, JsonPipe, Dirreciones, Telefonos, FormularioEmail],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -76,12 +76,20 @@ export class CrearPersona implements OnInit {
     },
 
   })
+   agregarCorreo(correo: CrearCorreoDTO){
+    let correos = this.form.controls.emails.value as CrearCorreoDTO
+    correos = correo
+    console.log("Creando Email", correos)
+
+  }
 
 
   guardarCambios() {
     if (!this.form.valid) {
       return
     }
+    this.agregarCorreo
+
     const persona = this.form.value as CrearPersonaDTO
 
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.llave)

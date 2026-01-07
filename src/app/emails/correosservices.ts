@@ -9,10 +9,19 @@ import { CrearCorreoDTO } from './correo';
 export class Correosservices {
   private http = inject(HttpClient)
   private urlBase = environment.apiUrl
-  constructor(){}
+  constructor() { }
 
-  public crearCorreo(correo:CrearCorreoDTO,idpersona:number){
-    return this.http.post(`${this.urlBase + '/Agregar Correo/persona'}/${idpersona}`,correo)
+  public crearCorreo(correo: CrearCorreoDTO, idpersona: number) {
+    return this.http.post(`${this.urlBase + '/Agregar Correo/persona'}/${idpersona}/correos`, correo)
   }
+
+  public actualizarCorreo(id: number, correo: CrearCorreoDTO) {
+    return this.http.put(`${this.urlBase + '/Actualizar Correo'}/${id}`, correo)
+  }
+
+  public borrarCorreo(id:number){
+    return this.http.delete(`${this.urlBase + '/Borrar Correo'}/${id}`)
+  }
+
 
 }

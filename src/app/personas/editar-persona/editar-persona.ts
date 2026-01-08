@@ -32,7 +32,7 @@ export class EditarPersona {
 
   telefonosAgregados: CrearTelefonoDTO[] = [{
     tipo:"Trabajo",
-    codigoPais:"+809",
+    codigopais:"+809",
     numero:151030
   }]
 

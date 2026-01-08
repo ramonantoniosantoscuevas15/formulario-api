@@ -14,7 +14,7 @@ export interface CrearDirrecionDTO {
   ubicacion: string,
   ciudad: string,
   provincia: string,
-  codigoPostal: string,
+  codigopostal: string,
   pais: string
 
 }

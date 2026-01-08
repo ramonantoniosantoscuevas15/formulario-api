@@ -19,11 +19,12 @@ import { Dirreciones } from "../../dirreciones/dirreciones";
 import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 import { JsonPipe } from '@angular/common';
 import { pipe } from 'rxjs';
+import { CrearDirrecionDTO } from '../../dirreciones/direccion';
 
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails, JsonPipe, Dirreciones, Telefonos, FormularioEmail],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, Emails, JsonPipe, Dirreciones, Telefonos,],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -54,34 +55,45 @@ export class CrearPersona implements OnInit {
   @Output()
   postFormulario = new EventEmitter<CrearPersonaDTO>
   form = this.fb.group({
-    nombre: ['', { validators: [Validators.required,Validators.minLength(3) ] }],
+    nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }],
-    emails:{
-      correo:''
+    emails: {
+      correo: ''
     },
-    dirreciones:{
-      tipo:'',
-      ubicacion:'',
-      ciudad:'',
-      provincia:'',
-      codigopostal:'',
-      pais:''
+    dirreciones: {
+      tipo: '',
+      ubicacion: '',
+      ciudad: '',
+      provincia: '',
+      codigopostal: '',
+      pais: ''
     },
-    telefonos:{
-      tipo:'',
-      codigopais:'',
-      numero:0
+    telefonos: {
+      tipo: '',
+      codigopais: '',
+      numero: 0
 
     },
 
   })
-   agregarCorreo(correo: CrearCorreoDTO){
+  agregarCorreo(correo: CrearCorreoDTO) {
     let correos = this.form.controls.emails.value as CrearCorreoDTO
     correos = correo
     console.log("Creando Email", correos)
 
   }
+  guardarDirrecion(direcciones: CrearDirrecionDTO) {
+    let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
+    dirrecion = direcciones
+    console.log("Creando correo", dirrecion)
+  }
+
+  guardarTelefono(telefonos: CrearTelefonoDTO){
+   telefonos = this.form.controls.telefonos.value as CrearTelefonoDTO
+
+  }
+
 
 
   guardarCambios() {
@@ -89,13 +101,15 @@ export class CrearPersona implements OnInit {
       return
     }
     this.agregarCorreo
+    this.guardarDirrecion
+    this.guardarTelefono
 
     const persona = this.form.value as CrearPersonaDTO
 
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.llave)
 
 
-    persona.categoriasIds =categoriasIds
+    persona.categoriasIds = categoriasIds
     //persona.correos = this.correosSelecionandos
     //persona.correos = this.correosAgregados
     //persona.correos = this.correos

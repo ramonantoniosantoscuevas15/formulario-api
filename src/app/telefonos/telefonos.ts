@@ -76,9 +76,9 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
     numero:[0,[Validators.required,Validators.min(1)]],
 
   })
-  guardarCambios(){
+  guardarTelefonos(){
 
-    if (this.form.invalid) {
+    if (!this.form.valid) {
 
       return
     }

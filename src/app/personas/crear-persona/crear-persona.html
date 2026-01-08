@@ -24,11 +24,11 @@
       <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
-  <app-formulario-email formGroupName="emails"></app-formulario-email>
-  <app-emails formControlName="emails" (postCorreo)="agregarCorreo($event)"></app-emails>
 
-  <app-dirreciones formControlName="dirreciones"></app-dirreciones>
-  <app-telefonos formControlName="telefonos"></app-telefonos>
+  <app-emails  formControlName="emails" (postCorreo)="agregarCorreo($event)"></app-emails>
+
+  <app-dirreciones formControlName="dirreciones" (postDirreccion)="guardarDirrecion($event)"></app-dirreciones>
+  <app-telefonos formControlName="telefonos" (postTelefono)="guardarTelefono($event)"></app-telefonos>
 
 <!--
   <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->

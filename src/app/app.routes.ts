@@ -53,7 +53,7 @@ export const routes: Routes = [
     component: Telefonos
   },
   {
-    path: 'telefonos/formulario',
+    path: 'telefonos/formulario-telefonos',
     component:FormularioTelefonos
   },
   {

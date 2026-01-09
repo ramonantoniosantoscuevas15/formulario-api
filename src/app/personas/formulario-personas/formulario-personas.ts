@@ -1,18 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CrearPersona } from "../crear-persona/crear-persona";
 import { CrearPersonaDTO } from '../crear-persona/personas';
 import { SelectorMultipleDTO } from '../../compartidos/componentes/selector-multiple/SelectorMultipleModelo';
 import { AutocompleCorreosDTO, CorreoDTO, CrearCorreoDTO } from '../../emails/correo';
 import { Emails } from '../../emails/crear-emails/emails';
 import { CrearTelefonoDTO } from '../../telefonos/telefono';
+import { FormBuilder, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
+import { Dirreciones } from "../../dirreciones/dirreciones";
+import { Telefonos } from "../../telefonos/telefonos";
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-formulario-personas',
-  imports: [CrearPersona],
+  imports: [CrearPersona, ɵInternalFormsSharedModule, ReactiveFormsModule,MatButtonModule],
   templateUrl: './formulario-personas.html',
   styleUrl: './formulario-personas.css',
 })
 export class FormularioPersonas {
+  // private fb = inject(FormBuilder)
+  // form= this.fb.group({
+  //  emails: {
+  //     correo: ''
+  //   },
+  //   dirreciones: {
+  //     tipo: '',
+  //     ubicacion: '',
+  //     ciudad: '',
+  //     provincia: '',
+  //     codigopostal: '',
+  //     pais: ''
+  //   },
+  //   telefonos: {
+  //     tipo: '',
+  //     codigopais: '',
+  //     numero: 0
+
+  //   },
+
+  // })
   categoriasSeleccionadas : SelectorMultipleDTO[] = []
   categoriasNoSeleccionadas : SelectorMultipleDTO[] = [
     {llave: 1, valor: 'Empleado Mision'},
@@ -26,9 +52,11 @@ export class FormularioPersonas {
   //correoSelecionandos: AutocompleCorreosDTO[]=[]
 
   guardarCambios(persona: CrearPersonaDTO){
+
     console.log("Se creo la Persona", persona)
 
   }
+
 
 
 }

@@ -9,6 +9,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 import { Subscriber, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-emails',
@@ -66,7 +67,7 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
   @Input() modeloCorreo? : CorreoDTO
 
   @Output() postCorreo = new EventEmitter<CrearCorreoDTO>()
-
+  private router = inject(Router)
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
   form = this.fb.group({
@@ -80,6 +81,7 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
     }
     const correo = this.form.value as CrearCorreoDTO
     this.postCorreo.emit(correo)
+    this.router.navigate(['dirreciones/formulario-dirreciones'])
   }
 
   // control = new FormControl

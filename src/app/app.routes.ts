@@ -17,6 +17,7 @@ import { FormularioPersonas } from './personas/formulario-personas/formulario-pe
 import { FormularioEmail } from './emails/formulario-email/formulario-email';
 import { FormularioTelefonos } from './telefonos/formulario-telefonos/formulario-telefonos';
 import { FiltroPersonas } from './personas/filtro-personas/filtro-personas';
+import { FormularioDirreciones } from './dirreciones/formulario-dirreciones/formulario-dirreciones';
 
 export const routes: Routes = [
   {
@@ -83,6 +84,15 @@ export const routes: Routes = [
   {
     path: 'dirreciones/editar/:id',
     component:EditarDirrecion
+  },
+  {
+    path:'personas/crear-persona',
+    component:CrearPersona
+  },
+  {
+    path:'dirreciones/formulario-dirreciones',
+    component:FormularioDirreciones
+
   },
   {
     path:'**',

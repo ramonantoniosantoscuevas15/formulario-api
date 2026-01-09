@@ -3,7 +3,7 @@ import { AbstractControl, ControlValueAccessor, FormBuilder, FormControl, FormsM
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CrearTelefonoDTO, TelefonoDTO } from './telefono';
 import { primeraLetraMayuscula } from '../compartidos/funciones/validaciones';
 import { CrearCategoriaDTO } from '../categorias/crear-categorias/categoria';
@@ -68,6 +68,7 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
 
 
   private fb = inject(FormBuilder)
+  private router = inject(Router)
   formUtilidades = FormUtilidades
 
   form = this.fb.group({
@@ -84,6 +85,7 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
     }
     const telefono = this.form.value as CrearTelefonoDTO
     this.postTelefono.emit(telefono)
+    this.router.navigate(['dirreciones/formulario-dirreciones'])
 
 
   }

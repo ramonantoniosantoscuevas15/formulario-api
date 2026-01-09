@@ -9,7 +9,7 @@ import { Telefonos } from "../telefonos";
   styleUrl: './formulario-telefonos.css',
 })
 export class FormularioTelefonos {
-  guardarCambios(telefono: CrearTelefonoDTO){
+   guardarTelefonos(telefono: CrearTelefonoDTO){
       console.log("Creando Telefono", telefono)
     }
 

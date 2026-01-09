@@ -10,7 +10,13 @@
       <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
     }
   </mat-form-field>
-  </fieldset> 
+  </fieldset>
+  <div class="contenedor-botones">
+    <button mat-flat-button 
+    [disabled]="form.invalid">
+    Continuar</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div>
 
 
 

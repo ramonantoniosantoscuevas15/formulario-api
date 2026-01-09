@@ -4,7 +4,7 @@
     <legend>Telefono</legend>
    <mat-form-field appearance="outline">
     <mat-label>Tipo</mat-label>
-    <input matInput [formControl] = "form.controls.tipo" (blur)="onTouchedCb">
+    <input placeholder="ej casa, trabajo,etc" matInput [formControl] = "form.controls.tipo" (blur)="onTouchedCb">
     @if (formUtilidades.isvalidField(form,'tipo')) {
       <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
     }
@@ -27,6 +27,12 @@
 
 
 </fieldset>
+<div class="contenedor-botones">
+    <button mat-flat-button
+    [disabled]="form.invalid">
+    Continuar</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div>
 
 
 </form>

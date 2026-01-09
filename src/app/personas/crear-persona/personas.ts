@@ -14,5 +14,5 @@ export interface CrearPersonaDTO{
   cedula: string,
   categoriasIds?: number[],
   //correos: AutocompleCorreosDTO[],
-  
+
 }

@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CrearDirrecionDTO, DirrecionDTO } from './direccion';
 import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dirreciones',
@@ -65,6 +66,7 @@ export class Dirreciones implements OnInit, ControlValueAccessor, Validator {
 
 
   private fb = inject(FormBuilder)
+   private router = inject(Router)
 
 
   formUtilidades = FormUtilidades
@@ -86,6 +88,7 @@ export class Dirreciones implements OnInit, ControlValueAccessor, Validator {
     }
     const dirreciones = this.form.value as CrearDirrecionDTO
     this.postDirreccion.emit(dirreciones)
+    this.router.navigate(['telefonos/formulario'])
     //funcion para reseteal el formulario
     //this.form.reset()
 

@@ -1,5 +1,5 @@
 <h2>Ingrese los Datos de la Persona</h2>
-<form (ngSubmit)="guardarCambios()"[formGroup]="form">
+<form (submit)="guardarCambios()"[formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Nombre:</mat-label>
     <input matInput [formControl] = "form.controls.nombre"/>
@@ -25,10 +25,10 @@
     }
   </mat-form-field>
 
-  <app-emails  formControlName="emails" (postCorreo)="agregarCorreo($event)"></app-emails>
+  <!-- <app-emails  formControlName="emails" ></app-emails>
 
-  <app-dirreciones formControlName="dirreciones" (postDirreccion)="guardarDirrecion($event)"></app-dirreciones>
-  <app-telefonos formControlName="telefonos" (postTelefono)="guardarTelefono($event)"></app-telefonos>
+  <app-dirreciones formControlName="dirreciones" ></app-dirreciones>
+  <app-telefonos formControlName="telefonos"></app-telefonos>  -->
 
 <!--
   <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->
@@ -42,15 +42,14 @@
   <div class="contenedor-botones">
     <button mat-flat-button type="submit"
     [disabled]="form.invalid">
-    guardar Cambios</button>
+    Continuar</button>
     <a mat-stroked-button routerLink="/">Cancelar</a>
-
   </div>
 </form>
-<h2>Form Valid: </h2>
+<!-- <h2>Form Valid: </h2>
 <h2>Form Status: </h2>
 
 <pre>{{ form.value| json }}</pre>
-<strong>Status:</strong> {{ form.status }}
+<strong>Status:</strong> {{ form.status }} -->
 
 

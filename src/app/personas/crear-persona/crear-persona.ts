@@ -24,7 +24,7 @@ import { CrearDirrecionDTO } from '../../dirreciones/direccion';
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, RouterLink],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, RouterLink, JsonPipe, Emails, Dirreciones, Telefonos],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -59,6 +59,23 @@ export class CrearPersona implements OnInit {
     nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }],
+    emails: {
+      correo: ''
+    },
+    dirreciones: {
+      tipo: '',
+      ubicacion: '',
+      ciudad: '',
+      provincia: '',
+      codigopostal: '',
+      pais: ''
+    },
+    telefonos: {
+      tipo: '',
+      codigopais: '',
+      numero: 0
+
+    },
 
 
   })
@@ -99,6 +116,9 @@ export class CrearPersona implements OnInit {
 
 
     persona.categoriasIds = categoriasIds
+    // persona.email = this.form.controls.emails.value as CrearCorreoDTO
+    // persona.telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
+    // persona.dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
     //persona.correos = this.correosSelecionandos
     //persona.correos = this.correosAgregados
     //persona.correos = this.correos
@@ -106,7 +126,7 @@ export class CrearPersona implements OnInit {
 
 
     this.postFormulario.emit(persona)
-    this.router.navigate(['/emails/formulario'])
+    //this.router.navigate(['/emails/formulario'])
 
   }
 

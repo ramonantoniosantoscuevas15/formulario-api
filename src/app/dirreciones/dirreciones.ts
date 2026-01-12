@@ -8,6 +8,7 @@ import { CrearDirrecionDTO, DirrecionDTO } from './direccion';
 import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Dirrecionesservices } from './dirrecionesservices';
 
 @Component({
   selector: 'app-dirreciones',
@@ -52,21 +53,23 @@ export class Dirreciones implements OnInit, ControlValueAccessor, Validator {
     this.sub?.unsubscribe()
   }
   ngOnInit(): void {
-    if(this.modeloDirrecion !== undefined){
+    if (this.modeloDirrecion !== undefined) {
       this.form.patchValue(this.modeloDirrecion)
 
     }
 
   }
   @Input()
- modeloDirrecion?: DirrecionDTO
+  modeloDirrecion?: DirrecionDTO
 
   @Output() postDirreccion = new EventEmitter<CrearDirrecionDTO>()
 
 
 
   private fb = inject(FormBuilder)
-   private router = inject(Router)
+  private router = inject(Router)
+  private dirrecionesservices = inject(Dirrecionesservices)
+
 
 
   formUtilidades = FormUtilidades
@@ -88,7 +91,9 @@ export class Dirreciones implements OnInit, ControlValueAccessor, Validator {
     }
     const dirreciones = this.form.value as CrearDirrecionDTO
     this.postDirreccion.emit(dirreciones)
-    this.router.navigate(['telefonos/formulario'])
+    this.dirrecionesservices.crearDirrecion(dirreciones.idpersona.telefonoid,dirreciones).subscribe()
+
+    //this.router.navigate(['telefonos/formulario'])
     //funcion para reseteal el formulario
     //this.form.reset()
 

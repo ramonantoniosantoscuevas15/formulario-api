@@ -1,3 +1,4 @@
+import { CrearPersonaDTO } from '../personas/crear-persona/personas';
 import { AutocompleCorreos } from './autocomple-correos/autocomple-correos';
 export interface CorreoDTO{
   id:number,
@@ -7,7 +8,8 @@ export interface CorreoDTO{
 }
 
 export interface CrearCorreoDTO{
-  correo:string
+  correo:string,
+  idpersona:CrearPersonaDTO
 }
 
 export interface AutocompleCorreosDTO{

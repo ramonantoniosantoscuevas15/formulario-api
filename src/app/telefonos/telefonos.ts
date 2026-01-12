@@ -11,6 +11,7 @@ import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/ma
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
 import { Subscription } from 'rxjs';
+import { Telefonosservices } from './telefonosservices';
 
 @Component({
   selector: 'app-telefonos',
@@ -69,6 +70,7 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
 
   private fb = inject(FormBuilder)
   private router = inject(Router)
+  private telefonosservice = inject(Telefonosservices)
   formUtilidades = FormUtilidades
 
   form = this.fb.group({
@@ -85,7 +87,8 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
    }
     const telefono = this.form.value as CrearTelefonoDTO
     this.postTelefono.emit(telefono)
-    this.router.navigate(['/emails/formulario'])
+    this.telefonosservice.crearTelefono(telefono.idpersona.telefonoid,telefono).subscribe()
+    //this.router.navigate(['/emails/formulario'])
 
 
 

@@ -10,6 +10,8 @@ import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/ma
 import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 import { Subscriber, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Correosservices } from '../correosservices';
+import { CrearPersonaDTO, PersonaDTO } from '../../personas/crear-persona/personas';
 
 @Component({
   selector: 'app-emails',
@@ -69,6 +71,7 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
   @Output() postCorreo = new EventEmitter<CrearCorreoDTO>()
   private router = inject(Router)
   private fb = inject(FormBuilder)
+  private correservices = inject(Correosservices)
   formUtilidades = FormUtilidades
   form = this.fb.group({
     correo: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]]
@@ -81,7 +84,9 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
     }
     const correo = this.form.value as CrearCorreoDTO
     this.postCorreo.emit(correo)
-    this.router.navigate(['dirreciones/formulario-dirreciones'])
+
+    //this.router.navigate(['dirreciones/formulario-dirreciones'])
+    this.correservices.crearCorreo(correo,correo.idpersona.emailid).subscribe()
   }
 
   // control = new FormControl

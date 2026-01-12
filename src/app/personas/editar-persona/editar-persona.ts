@@ -26,15 +26,16 @@ export class EditarPersona {
     { llave: 3, valor: 'Empleado' },
   ]
   //correosSelecionandos:AutocompleCorreosDTO[]=[{ nombre:"ramon",correos:"dgfh@gmailcom" }]
-  correosAgregados:CrearCorreoDTO[] =[{
-    correo:"dgfh@gmailcom"
-  }]
+  // correosAgregados:CrearCorreoDTO[] =[{
+  //   correo:"dgfh@gmailcom",
 
-  telefonosAgregados: CrearTelefonoDTO[] = [{
-    tipo:"Trabajo",
-    codigopais:"+809",
-    numero:151030
-  }]
+  // }]
+
+  // telefonosAgregados: CrearTelefonoDTO[] = [{
+  //   tipo:"Trabajo",
+  //   codigopais:"+809",
+  //   numero:151030
+  // }]
 
   guardarCambios(persona: CrearPersonaDTO) {
     console.log('editando la perosna', persona)

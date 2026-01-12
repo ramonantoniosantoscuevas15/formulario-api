@@ -1,3 +1,5 @@
+import { CrearCategoriaDTO } from '../categorias/crear-categorias/categoria';
+import { CrearPersonaDTO } from '../personas/crear-persona/personas';
 export interface TelefonoDTO{
   id : number,
   tipo: string,
@@ -9,5 +11,6 @@ export interface TelefonoDTO{
 export interface CrearTelefonoDTO{
   tipo: string,
   codigopais: string,
-  numero: number
+  numero: number,
+  idpersona:CrearPersonaDTO
 }

@@ -1,3 +1,5 @@
+import { CrearPersonaDTO } from "../personas/crear-persona/personas"
+
 export interface DirrecionDTO {
   id: number,
   tipo: string,
@@ -15,6 +17,7 @@ export interface CrearDirrecionDTO {
   ciudad: string,
   provincia: string,
   codigopostal: string,
-  pais: string
+  pais: string,
+  idpersona:CrearPersonaDTO
 
 }

@@ -20,6 +20,9 @@ import { FormUtilidades } from '../../compartidos/componentes/form-utilidades';
 import { JsonPipe } from '@angular/common';
 import { pipe } from 'rxjs';
 import { CrearDirrecionDTO } from '../../dirreciones/direccion';
+import { Correosservices } from '../../emails/correosservices';
+import { Dirrecionesservices } from '../../dirreciones/dirrecionesservices';
+import { Telefonosservices } from '../../telefonos/telefonosservices';
 
 
 @Component({
@@ -49,6 +52,9 @@ export class CrearPersona implements OnInit {
 
   private router = inject(Router)
   private fb = inject(FormBuilder)
+  private correoservices= inject(Correosservices)
+  private dirrecionesservices = inject(Dirrecionesservices)
+  private telefonosservices = inject(Telefonosservices)
   formUtilidades = FormUtilidades
   @Input()
   modelo?: PersonaDTO
@@ -83,22 +89,22 @@ export class CrearPersona implements OnInit {
 
   })
 
-  // agregarCorreo(correo: CrearCorreoDTO) {
-  //   let correos = this.form.controls.emails.value as CrearCorreoDTO
-  //   correos = correo
-  //   console.log("Creando Email", correos)
+  agregarCorreo(correo: CrearCorreoDTO) {
+    let correos = this.form.controls.emails.value as CrearCorreoDTO
+    correos = correo
+    this.correoservices.crearCorreo(correo,correo.idpersona.emailid).subscribe()
+  }
+  guardarDirrecion(direcciones: CrearDirrecionDTO) {
+    let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
+    dirrecion = direcciones
+    this.dirrecionesservices.crearDirrecion(dirrecion.idpersona.dirrecionid,dirrecion).subscribe()
+  }
 
-  // }
-  // guardarDirrecion(direcciones: CrearDirrecionDTO) {
-  //   let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
-  //   dirrecion = direcciones
-  //   console.log("Creando correo", dirrecion)
-  // }
-
-  // guardarTelefono(telefonos: CrearTelefonoDTO){
-  //  telefonos = this.form.controls.telefonos.value as CrearTelefonoDTO
-
-  // }
+  guardarTelefono(telefonos: CrearTelefonoDTO){
+    let telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
+    telefono = telefonos
+    this.telefonosservices.crearTelefono(telefono.idpersona.emailid,telefono).subscribe()
+  }
 
 
 
@@ -109,6 +115,9 @@ export class CrearPersona implements OnInit {
     // this.agregarCorreo
     // this.guardarDirrecion
     // this.guardarTelefono
+    let correos = this.form.controls.emails.value as CrearCorreoDTO
+    let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
+    let telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
 
     const persona = this.form.value as CrearPersonaDTO
 
@@ -116,6 +125,12 @@ export class CrearPersona implements OnInit {
 
 
     persona.categoriasIds = categoriasIds
+    persona.emailid = this.modelo!.id
+    persona.telefonoid = this.modelo!.id
+    this.agregarCorreo(correos)
+    this.guardarDirrecion(dirrecion)
+    this.guardarTelefono(telefono)
+
     // persona.email = this.form.controls.emails.value as CrearCorreoDTO
     // persona.telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
     // persona.dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO

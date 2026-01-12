@@ -25,12 +25,12 @@
     }
   </mat-form-field>
 
-  <app-emails formControlName="emails"></app-emails>
+  <app-emails (postCorreo)="agregarCorreo($event)" formControlName="emails"></app-emails>
 
-  <app-dirreciones formControlName="dirreciones"></app-dirreciones>
+  <app-dirreciones (postDirreccion)="guardarDirrecion($event)" formControlName="dirreciones"></app-dirreciones>
   <h4>Seleccione Las Categorias</h4>
   <app-selector-multiple [Seleccionados]="categoriasSeleccionadas" [NoSeleccionados]="categoriasNoSeleccionadas"></app-selector-multiple>
-  <app-telefonos formControlName="telefonos"></app-telefonos>
+  <app-telefonos (postTelefono)="guardarTelefono($event)" formControlName="telefonos"></app-telefonos>
 
 <!--
   <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->

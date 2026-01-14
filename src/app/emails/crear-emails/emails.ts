@@ -74,8 +74,16 @@ export class Emails implements OnInit, ControlValueAccessor,Validator {
   private correservices = inject(Correosservices)
   formUtilidades = FormUtilidades
   form = this.fb.group({
-    correo: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]]
+
+    correo: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
+    // correo2:this.fb.array(['',[Validators.pattern(this.formUtilidades.emailPattern)]])
+
   })
+
+  // get correo2(){
+  //   return this.form.get('correo2')
+
+  // }
 
   agregarCorreo(){
      if (!this.form.valid) {

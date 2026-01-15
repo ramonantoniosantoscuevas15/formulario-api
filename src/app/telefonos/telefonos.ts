@@ -87,7 +87,7 @@ export class Telefonos implements OnInit,ControlValueAccessor,Validator {
    }
     const telefono = this.form.value as CrearTelefonoDTO
     this.postTelefono.emit(telefono)
-    this.telefonosservice.crearTelefono(telefono.idpersona.telefonoid,telefono).subscribe()
+    //this.telefonosservice.crearTelefono(telefono.idpersona.telefonoid,telefono).subscribe()
     //this.router.navigate(['/emails/formulario'])
 
 

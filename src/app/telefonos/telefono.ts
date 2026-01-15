@@ -5,12 +5,12 @@ export interface TelefonoDTO{
   tipo: string,
   codigopais: string,
   numero: number,
-  idPersona:number
+  
 }
 
 export interface CrearTelefonoDTO{
   tipo: string,
   codigopais: string,
   numero: number,
-  idpersona:CrearPersonaDTO
+  idpersona:CrearPersonaDTO[]
 }

@@ -1,4 +1,4 @@
-import { CrearDirrecionDTO, DirrecionDTO } from "../../dirreciones/direccion"
+import { CrearDirrecionDTO, DirrecionDTO } from '../../dirreciones/direccion';
 import { AutocompleCorreosDTO, CorreoDTO, CrearCorreoDTO } from "../../emails/correo"
 import { CrearTelefonoDTO, TelefonoDTO } from "../../telefonos/telefono"
 
@@ -15,8 +15,8 @@ export interface CrearPersonaDTO{
   cedula: string,
   categoriasIds?: number[],
   //correos: AutocompleCorreosDTO[],
-  emailid:number,
-  telefonoid:number,
-  dirrecionid:number
+  emails:CrearCorreoDTO[],
+  telefonos:CrearTelefonoDTO[],
+  dirrecionid:CrearDirrecionDTO[]
 
 }

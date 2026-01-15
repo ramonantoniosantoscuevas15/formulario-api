@@ -5,7 +5,7 @@
     <legend>Correo</legend>
   <mat-form-field appearance="outline">
     <mat-label>Correo</mat-label>
-    <input matInput  formControlName="correo" (blur)="onTouchedCb">
+    <input matInput  [formControl]="form.controls.correo" formControlName="correo" (blur)="onTouchedCb">
     @if (formUtilidades.isvalidField(form,'correo')) {
       <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
     }

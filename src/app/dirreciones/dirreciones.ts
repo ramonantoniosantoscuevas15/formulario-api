@@ -91,7 +91,7 @@ export class Dirreciones implements OnInit, ControlValueAccessor, Validator {
     }
     const dirreciones = this.form.value as CrearDirrecionDTO
     this.postDirreccion.emit(dirreciones)
-    this.dirrecionesservices.crearDirrecion(dirreciones.idpersona.telefonoid,dirreciones).subscribe()
+    //this.dirrecionesservices.crearDirrecion(dirreciones.idpersona.telefonoid,dirreciones).subscribe()
 
     //this.router.navigate(['telefonos/formulario'])
     //funcion para reseteal el formulario

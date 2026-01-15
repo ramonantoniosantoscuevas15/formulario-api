@@ -3,13 +3,13 @@ import { AutocompleCorreos } from './autocomple-correos/autocomple-correos';
 export interface CorreoDTO{
   id:number,
   correo:string,
-  idPersona:number
+  
 
 }
 
 export interface CrearCorreoDTO{
   correo:string,
-  idpersona:CrearPersonaDTO
+  idpersona:CrearPersonaDTO[]
 }
 
 export interface AutocompleCorreosDTO{

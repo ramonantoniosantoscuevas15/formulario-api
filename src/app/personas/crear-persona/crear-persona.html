@@ -24,27 +24,13 @@
       <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
-  <fieldset formArrayName="correo">
-    @for (correos of correo.controls; track $index; let i =$index) {
-    <legend>Correo</legend>
-  <mat-form-field appearance="outline">
-    <mat-label>Correo:</mat-label>
-    <input matInput  [formControlName]="i" />
 
-    @if (formUtilidades.isValidFieldInArray(correo,i)) {
-      <mat-error>{{formUtilidades.getFieldErrorInArray(correo,i)}}</mat-error>
-    }
-  </mat-form-field>
-  <button >Agregar otro Correo</button>
-}
-</fieldset>
 
-  <!-- <app-emails (postCorreo)="agregarCorreo($event)" formControlName="emails"></app-emails>
-
-  <app-dirreciones (postDirreccion)="guardarDirrecion($event)" formControlName="dirreciones"></app-dirreciones> -->
+  <app-emails  formControlName="emails"></app-emails>
+  <app-dirreciones formControlName="dirreciones"></app-dirreciones>
   <h4>Seleccione Las Categorias</h4>
   <app-selector-multiple [Seleccionados]="categoriasSeleccionadas" [NoSeleccionados]="categoriasNoSeleccionadas"></app-selector-multiple>
-  <!-- <app-telefonos (postTelefono)="guardarTelefono($event)" formControlName="telefonos"></app-telefonos> -->
+  <app-telefonos formControlName="telefonos"></app-telefonos>
 
 <!--
   <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->
@@ -55,7 +41,7 @@
 
 
   <div class="contenedor-botones">
-    <button mat-flat-button 
+    <button mat-flat-button
     [disabled]="form.invalid">
     Continuar</button>
     <a mat-stroked-button routerLink="/">Cancelar</a>

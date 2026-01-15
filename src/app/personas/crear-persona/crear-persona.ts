@@ -27,7 +27,7 @@ import { Telefonosservices } from '../../telefonos/telefonosservices';
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, RouterLink, JsonPipe,],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, RouterLink, JsonPipe, Emails, Dirreciones, Telefonos],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -65,54 +65,39 @@ export class CrearPersona implements OnInit {
     nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }],
-    correo: this.fb.array([
-      ['', [Validators.required, Validators.pattern(this.formUtilidades.emailPattern)]],
-
-    ]),
-
 
     emails: {
       correo: ''
     },
-    // dirreciones: {
-    //   tipo: '',
-    //   ubicacion: '',
-    //   ciudad: '',
-    //   provincia: '',
-    //   codigopostal: '',
-    //   pais: ''
-    // },
-    // telefonos: {
-    //   tipo: '',
-    //   codigopais: '',
-    //   numero: 0
+    dirreciones:{
+      tipo:'',
+      ubicacion:'',
+      ciudad:'',
+      provincia:'',
+      codigopostal:'',
+      pais:''
+    },
+    telefonos:{
+      tipo:'',
+      codigopais:'',
+      numero:0
+    }
 
-    // },
 
 
   })
-  get correo() {
-    return this.form.get('correo') as FormArray
-  }
-  newcorreo = new FormControl('',Validators.required)
-  agregarotrocorreo(){
-    if(this.newcorreo.invalid) return
-    const newcorreo = this.newcorreo.value
-    this.correo.push(this.fb.control(newcorreo,Validators.required))
-  }
 
 
-
-   agregarCorreo(correo: CrearCorreoDTO) {
-   let correos = this.form.controls.emails.value as CrearCorreoDTO
+  agregarCorreo(correo: CrearCorreoDTO) {
+    let correos = this.form.controls.emails.value as CrearCorreoDTO
     correos = correo
-   this.correoservices.crearCorreo(correo,correo.idpersona.emailid).subscribe()
- }
-  // guardarDirrecion(direcciones: CrearDirrecionDTO) {
-  //   let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
-  //   dirrecion = direcciones
-  //   this.dirrecionesservices.crearDirrecion(dirrecion.idpersona.dirrecionid,dirrecion).subscribe()
-  // }
+    //this.correoservices.crearCorreo(correo,correo.idpersona.emailid).subscribe()
+  }
+   guardarDirrecion(direcciones: CrearDirrecionDTO) {
+    let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
+    dirrecion = direcciones
+    //this.dirrecionesservices.crearDirrecion(dirrecion.idpersona.dirrecionid,dirrecion).subscribe()
+   }
 
   // guardarTelefono(telefonos: CrearTelefonoDTO){
   //   let telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
@@ -134,12 +119,12 @@ export class CrearPersona implements OnInit {
     // let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
     // let telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
 
-    const persona = this.form.value as CrearPersonaDTO
+    //const persona = this.form.value as CrearPersonaDTO
 
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.llave)
 
 
-    persona.categoriasIds = categoriasIds
+    // persona.categoriasIds = categoriasIds
     //pruebas de las relaciones
     // persona.emailid = this.modelo!.id
     // persona.telefonoid = this.modelo!.id
@@ -156,7 +141,7 @@ export class CrearPersona implements OnInit {
     //persona.telefonos = this.telefonosAgregados
 
 
-    this.postFormulario.emit(persona)
+    //this.postFormulario.emit(persona)
     //this.router.navigate(['/emails/formulario'])
 
   }

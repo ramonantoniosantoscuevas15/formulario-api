@@ -8,7 +8,7 @@ export interface DirrecionDTO {
   provincia: string,
   codigoPostal: string,
   pais: string,
-  idPersona:number
+  
 }
 
 export interface CrearDirrecionDTO {
@@ -18,6 +18,6 @@ export interface CrearDirrecionDTO {
   provincia: string,
   codigopostal: string,
   pais: string,
-  idpersona:CrearPersonaDTO
+  idpersona:CrearPersonaDTO[]
 
 }

@@ -33,9 +33,9 @@ import { Telefonosservices } from '../../telefonos/telefonosservices';
 })
 export class CrearPersona implements OnInit {
   ngOnInit(): void {
-    if (this.modelo !== undefined) {
+     if (this.modelo !== undefined) {
       this.form.patchValue(this.modelo)
-    }
+     }
   }
   @Input({ required: true })
   categoriasNoSeleccionadas!: SelectorMultipleDTO[]
@@ -58,6 +58,9 @@ export class CrearPersona implements OnInit {
   formUtilidades = FormUtilidades
   @Input()
   modelo?: PersonaDTO
+
+  @Input()
+  emails:CrearCorreoDTO[]=[]
   @Output()
   postFormulario = new EventEmitter<CrearPersonaDTO>
   form = this.fb.group({
@@ -91,6 +94,9 @@ export class CrearPersona implements OnInit {
   agregarCorreo(correo: CrearCorreoDTO) {
     let correos = this.form.controls.emails.value as CrearCorreoDTO
     correos = correo
+    this.emails.push(correos)
+    console.log(this.emails)
+
     //this.correoservices.crearCorreo(correo,correo.idpersona.emailid).subscribe()
   }
    guardarDirrecion(direcciones: CrearDirrecionDTO) {
@@ -119,16 +125,18 @@ export class CrearPersona implements OnInit {
     // let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
     // let telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
 
-    //const persona = this.form.value as CrearPersonaDTO
+    const persona = this.form.value as CrearPersonaDTO
+
+
 
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.llave)
 
 
-    // persona.categoriasIds = categoriasIds
+     persona.categoriasIds = categoriasIds
     //pruebas de las relaciones
     // persona.emailid = this.modelo!.id
     // persona.telefonoid = this.modelo!.id
-    // this.agregarCorreo(correos)
+    this.agregarCorreo
     // this.guardarDirrecion(dirrecion)
     // this.guardarTelefono(telefono)
 
@@ -141,7 +149,7 @@ export class CrearPersona implements OnInit {
     //persona.telefonos = this.telefonosAgregados
 
 
-    //this.postFormulario.emit(persona)
+    this.postFormulario.emit(persona)
     //this.router.navigate(['/emails/formulario'])
 
   }

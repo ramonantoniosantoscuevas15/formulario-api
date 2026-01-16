@@ -13,32 +13,32 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-formulario-personas',
-  imports: [CrearPersona, ɵInternalFormsSharedModule, ReactiveFormsModule,MatButtonModule],
+  imports: [CrearPersona, ɵInternalFormsSharedModule, ReactiveFormsModule, MatButtonModule, Emails, Dirreciones, Telefonos,JsonPipe,],
   templateUrl: './formulario-personas.html',
   styleUrl: './formulario-personas.css',
 })
 export class FormularioPersonas {
-  // private fb = inject(FormBuilder)
-  // form= this.fb.group({
-  //  emails: {
-  //     correo: ''
-  //   },
-  //   dirreciones: {
-  //     tipo: '',
-  //     ubicacion: '',
-  //     ciudad: '',
-  //     provincia: '',
-  //     codigopostal: '',
-  //     pais: ''
-  //   },
-  //   telefonos: {
-  //     tipo: '',
-  //     codigopais: '',
-  //     numero: 0
+   private fb = inject(FormBuilder)
+   form= this.fb.group({
+    emails: {
+       correo: ''
+     },
+   dirreciones: {
+      tipo: '',
+      ubicacion: '',
+      ciudad: '',
+      provincia: '',
+       codigopostal: '',
+       pais: ''
+    },
+    telefonos: {
+      tipo: '',
+      codigopais: '',
+     numero: 0
 
-  //   },
+    },
 
-  // })
+   })
   categoriasSeleccionadas : SelectorMultipleDTO[] = []
   categoriasNoSeleccionadas : SelectorMultipleDTO[] = [
     {llave: 1, valor: 'Empleado Mision'},
@@ -49,12 +49,29 @@ export class FormularioPersonas {
   telefonosAgregados: CrearTelefonoDTO[] = []
   postCorreo: CrearCorreoDTO[]=[]
 
+  emails:CrearCorreoDTO[]=[]
+
   //correoSelecionandos: AutocompleCorreosDTO[]=[]
+  agregarCorreo(correo: CrearCorreoDTO) {
+    let correos = this.form.controls.emails.value as CrearCorreoDTO
+    correos = correo
+    this.emails.push(correos)
+    console.log(this.emails)
+
+    //this.correoservices.crearCorreo(correo,correo.idpersona.emailid).subscribe()
+  }
 
   guardarCambios(persona: CrearPersonaDTO){
+    if (!this.form.valid) {
+      return
+    }
 
     console.log("Se creo la Persona", persona)
 
+  }
+  enviar(){
+    this.guardarCambios
+    this.agregarCorreo
   }
 
 

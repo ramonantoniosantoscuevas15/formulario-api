@@ -1,7 +1,21 @@
-
+<form (submit)="enviar()" [formGroup]="form">
 <app-crear-persona  (postFormulario)="guardarCambios($event)" [categoriasNoSeleccionadas]="categoriasNoSeleccionadas" [categoriasSeleccionadas]="categoriasSeleccionadas"
 >
 </app-crear-persona>
+<app-emails (postCorreo)="agregarCorreo($event)" formControlName="emails"></app-emails>
+<app-dirreciones formControlName="dirreciones"></app-dirreciones>
+<app-telefonos formControlName="telefonos"></app-telefonos>
 
+<div class="contenedor-botones">
+    <button mat-flat-button
+    [disabled]="form.invalid">
+    Continuar</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div>
 
+</form>
+<h2>Form Valid: </h2>
+<h2>Form Status: </h2>
 
+<pre>{{ form.value| json }}</pre>
+<strong>Status:</strong> {{ form.status }}

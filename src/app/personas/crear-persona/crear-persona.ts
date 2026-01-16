@@ -27,7 +27,7 @@ import { Telefonosservices } from '../../telefonos/telefonosservices';
 
 @Component({
   selector: 'app-crear-persona',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule, RouterLink, JsonPipe, Emails, Dirreciones, Telefonos],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, SelectorMultiple, FormsModule,    ],
   templateUrl: './crear-persona.html',
   styleUrl: './crear-persona.css',
 })
@@ -69,41 +69,19 @@ export class CrearPersona implements OnInit {
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }],
 
-    emails: {
-      correo: ''
-    },
-    dirreciones:{
-      tipo:'',
-      ubicacion:'',
-      ciudad:'',
-      provincia:'',
-      codigopostal:'',
-      pais:''
-    },
-    telefonos:{
-      tipo:'',
-      codigopais:'',
-      numero:0
-    }
+
 
 
 
   })
 
 
-  agregarCorreo(correo: CrearCorreoDTO) {
-    let correos = this.form.controls.emails.value as CrearCorreoDTO
-    correos = correo
-    this.emails.push(correos)
-    console.log(this.emails)
 
-    //this.correoservices.crearCorreo(correo,correo.idpersona.emailid).subscribe()
-  }
-   guardarDirrecion(direcciones: CrearDirrecionDTO) {
-    let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
-    dirrecion = direcciones
-    //this.dirrecionesservices.crearDirrecion(dirrecion.idpersona.dirrecionid,dirrecion).subscribe()
-   }
+  //  guardarDirrecion(direcciones: CrearDirrecionDTO) {
+  //   let dirrecion = this.form.controls.dirreciones.value as CrearDirrecionDTO
+  //   dirrecion = direcciones
+  //   //this.dirrecionesservices.crearDirrecion(dirrecion.idpersona.dirrecionid,dirrecion).subscribe()
+  //  }
 
   // guardarTelefono(telefonos: CrearTelefonoDTO){
   //   let telefono = this.form.controls.telefonos.value as CrearTelefonoDTO
@@ -136,7 +114,7 @@ export class CrearPersona implements OnInit {
     //pruebas de las relaciones
     // persona.emailid = this.modelo!.id
     // persona.telefonoid = this.modelo!.id
-    this.agregarCorreo
+    
     // this.guardarDirrecion(dirrecion)
     // this.guardarTelefono(telefono)
 

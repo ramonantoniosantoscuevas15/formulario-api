@@ -1,5 +1,5 @@
 <h2>Ingrese los Datos de la Persona</h2>
-<form (submit)="guardarCambios()"[formGroup]="form">
+<form (submit)="guardarCambios()" [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Nombre:</mat-label>
     <input matInput [formControl] = "form.controls.nombre"/>
@@ -26,11 +26,11 @@
   </mat-form-field>
 
 
-  <app-emails (postCorreo)="agregarCorreo($event)"  formControlName="emails"></app-emails>
-  <app-dirreciones formControlName="dirreciones"></app-dirreciones>
+
+
   <h4>Seleccione Las Categorias</h4>
   <app-selector-multiple [Seleccionados]="categoriasSeleccionadas" [NoSeleccionados]="categoriasNoSeleccionadas"></app-selector-multiple>
-  <app-telefonos formControlName="telefonos"></app-telefonos>
+
 
 <!--
   <app-telefonos [telefonosAgregados]="telefonosAgregados"></app-telefonos> -->
@@ -40,17 +40,8 @@
 
 
 
-  <div class="contenedor-botones">
-    <button mat-flat-button
-    [disabled]="form.invalid">
-    Continuar</button>
-    <a mat-stroked-button routerLink="/">Cancelar</a>
-  </div>
-</form>
- <h2>Form Valid: </h2>
-<h2>Form Status: </h2>
 
-<pre>{{ form.value| json }}</pre>
-<strong>Status:</strong> {{ form.status }}
+</form>
+
 
 

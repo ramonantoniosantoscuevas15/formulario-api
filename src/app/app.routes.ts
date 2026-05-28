@@ -18,11 +18,13 @@ import { FormularioEmail } from './emails/formulario-email/formulario-email';
 import { FormularioTelefonos } from './telefonos/formulario-telefonos/formulario-telefonos';
 import { FiltroPersonas } from './personas/filtro-personas/filtro-personas';
 import { FormularioDirreciones } from './dirreciones/formulario-dirreciones/formulario-dirreciones';
+import { Pacientes } from './pacientes/pacientes';
+import { FormularioPacientes } from './pacientes/formulario-pacientes/formulario-pacientes';
 
 export const routes: Routes = [
   {
     path: '',
-    component: FormularioPersonas
+    component: FormularioPacientes
   },
 
   {path: 'landing',

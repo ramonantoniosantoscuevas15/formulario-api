@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-formulario-personas',
-  imports: [CrearPersona, ɵInternalFormsSharedModule, ReactiveFormsModule, MatButtonModule, Emails, Dirreciones, Telefonos,JsonPipe,],
+  imports: [CrearPersona, ɵInternalFormsSharedModule, ReactiveFormsModule, MatButtonModule, ],
   templateUrl: './formulario-personas.html',
   styleUrl: './formulario-personas.css',
 })

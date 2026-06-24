@@ -20,15 +20,25 @@ import { FiltroPersonas } from './personas/filtro-personas/filtro-personas';
 import { FormularioDirreciones } from './dirreciones/formulario-dirreciones/formulario-dirreciones';
 import { Pacientes } from './pacientes/pacientes';
 import { FormularioPacientes } from './pacientes/formulario-pacientes/formulario-pacientes';
+import { EditarPacientes } from './pacientes/editar-pacientes/editar-pacientes';
+import { Pacientefiltro } from './pacientefiltro/pacientefiltro';
 
 export const routes: Routes = [
   {
     path: '',
-    component: FormularioPacientes
+    component: LandingPage
   },
 
-  {path: 'landing',
-    component: LandingPage
+  {path: 'pacientes',
+    component: FormularioPacientes
+  },
+  {
+    path: 'paciente/editar/:id',
+    component: EditarPacientes
+  },
+  {
+    path:'buscarpaciente',
+    component:Pacientefiltro
   },
   {
     path:'personas/filtro',

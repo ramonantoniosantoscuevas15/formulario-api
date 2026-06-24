@@ -1,3 +1,364 @@
 
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-3xl mx-auto space-y-6">
+    <div class="flex items-center gap-3">
+      <a class="w-9 h-9 rounded-lg border border-border flex items-center justify-center hover:bg-secondary transition-colors"
+        href="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-arrow-left w-4 h-4">
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
+      </a>
+      <div>
+        <h1 class="text-2xl font-bold tracking-tight">Nuevo Paciente</h1>
+        <p class="text-muted-foreground mt-0.5"> Complete los del paciente</p>
 
-<app-selector [Seleccionados]="cursoseleccionado" [NoSeleccionados]="cursonoseleccionado"></app-selector>
+      </div>
+    </div>
+    <div class="bg-card rounded-2xl border border-border shadow-sm p-6 md:p-8">
+      <div id="section">
+
+
+        <form class="space-y-8" [formGroup]="form" (submit)="guardarpaciente()">
+          <section>
+
+            <h3 class="text-base font-semibold mb-4 text-foreground">Información Personal</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Nombre
+                  y Apellido</label>
+                <input [formControl]="form.controls.nombre" class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+          focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed
+          disabled:opacity-50 md:text-sm h-11" id="nombre" placeholder="Nombre y Apellido">
+                @if(formutilidades.isvalidField(form,'nombre')){
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'nombre')}}
+                </span>
+
+                }
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Fecha
+                  de Nacimiento</label>
+                <input type="date" [formControl]="form.controls.fechanacimiento"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+          focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Seleccione
+                  un Genero</label>
+
+                <select formControlName="genero" role="combobox" aria-controls="radix-:r0:" aria-expanded="false"
+                  aria-autocomplete="none" dir="ltr" data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
+    focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"></path>
+
+                  </svg>
+
+                  @for (genero of generos; track $index) {
+                  <option [value]="genero.genero">{{genero.genero}}</option>
+
+                  }
+
+                </select>
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Cedula</label>
+                <input type="number" [formControl]="form.controls.cedula" class="flex w-full rounded-md border
+                border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+                disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if(formutilidades.isvalidField(form,'cedula')){
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'cedula')}}
+                </span>
+                }
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Correo
+                  Electronico</label>
+                <input type="email" [formControl]="form.controls.correo"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if(formutilidades.isvalidField(form,'correo')){
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'correo')}}
+                </span>
+                }
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Telefono
+                </label>
+                <input type="number" [formControl]="form.controls.telefono" type="number"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if(formutilidades.isvalidField(form,'telefono')){
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'telefono')}}
+                </span>
+                }
+
+
+              </div>
+
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Direccion</label>
+                <input type="text" [formControl]="form.controls.direccion"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11" placeholder="Calle, Casa,Ciudad">
+                @if(formutilidades.isvalidField(form,'direccion')){
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'direccion')}}
+                </span>
+                }
+
+              </div>
+
+
+
+
+            </div>
+          </section>
+          <section>
+            <h3 class="text-base font-semibold mb-4 text-foreground"> Información Médica</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Seleccione
+                  Un Tipo de Sangre
+                </label>
+                <select formControlName="sangre" role="combobox" aria-controls="radix-:r0:" aria-expanded="false"
+                  aria-autocomplete="none" dir="ltr" data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
+    focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"></path>
+
+                  </svg>
+                  @for (sangre of sangres; track $index) {
+                  <option [value]="sangre.sangre">{{sangre.sangre}}</option>
+                  }
+                </select>
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Seleccione un Estado
+                </label>
+
+                <select formControlName="estado" role="combobox" aria-controls="radix-:r0:" aria-expanded="false"
+                  aria-autocomplete="none" dir="ltr" data-state="closed" class="flex items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background data-placeholder:text-muted-foreground focus:outline-none focus:ring-1
+    focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-full sm:w-40 h-11">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-chevron-down h-4 w-4 opacity-50" aria-hidden="true">
+                    <path d="m6 9 6 6 6-6"></path>
+
+                  </svg>
+                  @for (estado of estados; track $index) {
+                  <option [value]="estado.estado">{{estado.estado}}</option>
+
+                  }
+                </select>
+
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Centro Medico</label>
+                <input type="text" [formControl]="form.controls.hospital"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if (formutilidades.isvalidField(form,'hospital')) {
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'hospital')}}
+                </span>
+                }
+
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Nombre del Doctro</label>
+                <input type="text" [formControl]="form.controls.nombredoctor"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11">
+                @if (formutilidades.isvalidField(form,'nombredoctor')) {
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'nombredoctor')}}
+                </span>
+                }
+
+              </div>
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Motivo</label>
+                <input type="text" [formControl]="form.controls.motivo"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11" placeholder="Consulta,Operacion tec.">
+                @if (formutilidades.isvalidField(form, 'motivo')) {
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'motivo')}}
+                </span>
+                }
+
+              </div>
+
+
+
+
+
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Alergias</label>
+                <textarea [formControl]="form.controls.alergias" class="flex min-h-15 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1
+                focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  placeholder="Alergias conocidas del paciente..." rows="2"></textarea>
+
+              </div>
+              <div class="space-y-2 md:col-span-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Notas
+                  Médicas</label>
+                <textarea [formControl]="form.controls.notasmedicas"
+                  class="flex min-h-15 w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"></textarea>
+
+              </div>
+
+
+            </div>
+
+          </section>
+          <section>
+            <h3 class="text-base font-semibold mb-4 text-foreground">Contacto de Emergencia</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Nombre</label>
+                <input type="text" [formControl]="form.controls.nombrecontacto"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+                focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11" placeholder="Nombre del contacto">
+                @if(formutilidades.isvalidField(form,'nombrecontacto')){
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'nombrecontacto')}}
+                </span>
+                }
+
+              </div>
+
+              <div class="space-y-2">
+                <label
+                  class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Teléfono</label>
+                <input type="number"
+                  class="flex w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none
+              focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm h-11"
+                  [formControl]="form.controls.telefonocontacto">
+                @if(formutilidades.isvalidField(form,'telefonocontacto')){
+                <span class="error">
+
+                  {{formutilidades.getFieldError(form,'telefonocontacto')}}
+                </span>
+
+                }
+
+              </div>
+
+
+            </div>
+
+
+
+
+          </section>
+
+
+
+
+
+
+          <div class="flex justify-end pt-2">
+            <div class="boton-registro">
+              <button [disabled]="form.invalid" type="submit" class="inline-flex items-center
+      justify-center gap-2 whitespace-nowrap
+      rounded-md text-sm font-medium
+      transition-colors focus-visible:outline-none
+      focus-visible:ring-1 focus-visible:ring-ring
+      disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none
+      [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 py-2 h-11 px-8">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-save w-4 h-4 mr-2">
+                  <path
+                    d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z">
+                  </path>
+                  <path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"></path>
+                  <path d="M7 3v4a1 1 0 0 0 1 1h7"></path>
+                </svg>
+                Registrar Paciente</button>
+
+            </div>
+
+          </div>
+
+        </form>
+        <div class="flex justify-end pt-2">
+          <div class="boton-imprimir">
+              <button type="button" class="inline-flex items-center
+      justify-center gap-2 whitespace-nowrap
+      rounded-md text-sm font-medium
+      transition-colors focus-visible:outline-none
+      focus-visible:ring-1 focus-visible:ring-ring
+      disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none
+      [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 py-2 h-11 px-8"
+                styleSheetFile="/styles.css" printTitle="Registro Medico" printSectionId="section" ngxPrint>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer"
+                  viewBox="0 0 16 16">
+                  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                  <path
+                    d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+                </svg>
+                Imprimir</button>
+
+            </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</main>

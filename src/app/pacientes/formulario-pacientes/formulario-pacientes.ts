@@ -2,6 +2,9 @@ import { Component, inject } from '@angular/core';
 import { Pacientes } from "../pacientes";
 import { SelectorDTO } from '../../compartidos/componentes/selector/selectordto';
 import { PacienteServices } from '../pacienteServices';
+import { CrearPacienteDTO } from '../pacientedto';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulario-pacientes',
@@ -9,25 +12,25 @@ import { PacienteServices } from '../pacienteServices';
   templateUrl: './formulario-pacientes.html',
 })
 export class FormularioPacientes {
+  pacienteServices = inject(PacienteServices)
+  router = inject(Router)
 
-  generosSeleccionados:SelectorDTO[]=[]
-  generosNoSeleccionados:SelectorDTO[]=[]
-  estadoSeleccionados:SelectorDTO[]=[]
-  estadoNoSeleccionados:SelectorDTO[]=[]
-  sangreSeleccionada:SelectorDTO[]=[]
-  sangreNoSeleccionada:SelectorDTO[]=[]
-  cursonoseleccionado:SelectorDTO[]=[]
-  cursoseleccionado:SelectorDTO[]=[]
+  guardarpaciente(paciente: CrearPacienteDTO) {
+    this.pacienteServices.crear(paciente).subscribe({
+      next: paciente => {
+        Swal.fire({
+          title: "Paciente Agregado Correctamente",
+          icon: "success",
+          draggable: true
+        })
+      }
 
-
-  pacienteservices = inject(PacienteServices)
-
-  constructor(){
-   this.pacienteservices.crearget().subscribe(modelo => {
-      this.cursonoseleccionado = modelo.cursos.map(curso => {
-        return <SelectorDTO><unknown>{ id: curso.id, nombreCurso: curso.nombreCurso }
-      })
     })
+    this.router.navigate(['/'])
+
   }
+
+
+
 
 }

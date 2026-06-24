@@ -1,0 +1,21 @@
+<app-listado-generico [listado]="pacientes">
+  <ng-container contenido>
+    <div class="pacientes-contenedor">
+      @for (paciente of pacientes; track $index) {
+        <div id="lista" class="bg-card rounded-2xl border border-border shadow-sm p-6 md:p-8">
+          <p>Nombre:{{paciente.nombre}}</p>
+          <p>Correo:{{paciente.correo}}</p>
+          <p>Telefono:{{paciente.telefono}}</p>
+          <div>
+          <a [routerLink]="['/paciente/editar/',paciente.id]" button mat-flat-button class="primary">Editar</a>
+
+        </div>
+
+        </div>
+      }
+
+    </div>
+
+  </ng-container>
+
+</app-listado-generico>

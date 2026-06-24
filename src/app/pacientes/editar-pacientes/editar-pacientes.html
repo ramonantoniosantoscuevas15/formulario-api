@@ -1,0 +1,8 @@
+@if(paciente){
+  <app-pacientes [modelo]="paciente" (postpaciente)="guardarpaciente($event)"></app-pacientes>
+
+}
+@else {
+  <app-cargando></app-cargando>
+}
+

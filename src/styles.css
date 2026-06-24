@@ -1,39 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import "tailwindcss";
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-body{
-  height: fit-content;
-}
 
-form button{
-  margin: 1rem;
-}
+
 mat-form-field{
   width:100%;
   max-width:500px;
   display:block !important;
   margin-top: 1rem;
-}
-.contenedor-botones{
-  margin-top:1rem
-}
-
-fieldset{
-  width:100%;
-  max-width:500px;
-  width:100%;
-  margin-top: 1rem;
-
-
-}
-.indice-elementos{
-  margin-top:1rem;
-}
-
-.indice-elementos a{
-  margin-right:1rem;
 }
 
 .contenedor{
@@ -41,10 +17,10 @@ fieldset{
 }
 
 ul{
-  height:200px;
+  height:100px;
   overflow-y: auto;
   list-style-type: none;
-  width:170px;
+  width:140px;
   padding: 0;
   border-radius: 3px;
   border: 1px solid #ccc;
@@ -68,7 +44,63 @@ ul il:hover{
   padding: 5px;
 }
 
-button{
+
+.boton-registro button {
   margin: 5px;
+  background: #2385E7 ;
+  color: #ffffff;
+  cursor: pointer;
 }
+.boton-imprimir button{
+  margin: 5px;
+  background: #ffff00 ;
+  color: #ffffff;
+  cursor: pointer;
+
+}
+mat-icon {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+mat-toolbar{
+  position: sticky;
+  position: --webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}
+ .lista{
+  border:1px solid  ;
+  margin-bottom:1rem;
+  padding:1rem;
+
+
+}
+
+
+p {
+    max-width: 225px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+button {
+    margin-left: 1rem
+}
+.error{
+  color:red;
+}
+#lista{
+  margin: 5px
+
+}
+
+
+
+
+
 

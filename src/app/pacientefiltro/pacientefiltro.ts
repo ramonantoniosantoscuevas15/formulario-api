@@ -3,7 +3,7 @@ import { PacienteServices } from '../pacientes/pacienteServices';
 import { PaginacionDTO } from '../compartidos/modelos/Paginaciondto';
 import { pacientefiltrodto } from './pacientefiltrodto';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PacienteDTO } from '../pacientes/pacientedto';
 import { Location } from '@angular/common';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-pacientefiltro',
-  imports: [ReactiveFormsModule, MatPaginator, ListadoPacientes,MatButtonModule, MatIconModule,],
+  imports: [ReactiveFormsModule, MatPaginator, ListadoPacientes,MatButtonModule, MatIconModule,RouterLink],
   templateUrl: './pacientefiltro.html',
 })
 export class Pacientefiltro {

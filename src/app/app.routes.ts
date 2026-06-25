@@ -22,6 +22,8 @@ import { Pacientes } from './pacientes/pacientes';
 import { FormularioPacientes } from './pacientes/formulario-pacientes/formulario-pacientes';
 import { EditarPacientes } from './pacientes/editar-pacientes/editar-pacientes';
 import { Pacientefiltro } from './pacientefiltro/pacientefiltro';
+import { Login } from './login/login';
+import { Lista } from './lista/lista';
 
 export const routes: Routes = [
   {
@@ -43,6 +45,15 @@ export const routes: Routes = [
   {
     path:'personas/filtro',
     component:FiltroPersonas
+  },
+  {
+    path:'Login',
+    component:Login
+
+  },
+  {
+    path:'Lista',
+    component:Lista
   },
   {
     path:'categorias',

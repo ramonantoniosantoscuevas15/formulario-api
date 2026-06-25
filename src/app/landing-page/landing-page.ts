@@ -11,10 +11,11 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterLink } from '@angular/router';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { Lista } from "../lista/lista";
 
 @Component({
   selector: 'app-landing-page',
-  imports: [ListadoGenerico,MatButtonModule,MatTableModule, MatPaginatorModule,RouterLink,SweetAlert2Module],
+  imports: [ListadoGenerico, MatButtonModule, MatTableModule, MatPaginatorModule, RouterLink, SweetAlert2Module, Lista],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })

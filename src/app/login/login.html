@@ -43,12 +43,12 @@
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
 
                   </svg>
-                  <input [formControl]="form.controls.email" type="email" class="flex w-full border px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 h-11 sm:h-12 bg-slate-50/50 border-slate-200
+                  <input [formControl]="form.controls.Email" type="email" class="flex w-full border px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 h-11 sm:h-12 bg-slate-50/50 border-slate-200
                    focus:border-slate-400 focus:ring-slate-400 rounded-xl placeholder:text-slate-400"
                     placeholder="tu@example.com"
                    >
-                   @if(formutilidades.isvalidField(form,'email')){
-                    <span class="error">{{formutilidades.getFieldError(form,"email")}} </span>
+                   @if(formutilidades.isvalidField(form,'Email')){
+                    <span class="error">{{formutilidades.getFieldError(form,"Email")}} </span>
                    }
                 </div>
                 <div class="space-y-1.5">
@@ -64,9 +64,9 @@
                     </svg>
                     <input type="password" class="flex w-full border px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-10 h-11 sm:h-12 bg-slate-50/50
                      border-slate-200 focus:border-slate-400
-                      focus:ring-slate-400 rounded-xl placeholder:text-slate-400"  placeholder="*******" [formControl]="form.controls.password">
-                      @if(formutilidades.isvalidField(form,'password')){
-                        <span class="error">{{formutilidades.getFieldError(form, "password")}}</span>
+                      focus:ring-slate-400 rounded-xl placeholder:text-slate-400"  placeholder="*******" [formControl]="form.controls.Password">
+                      @if(formutilidades.isvalidField(form,'Password')){
+                        <span class="error">{{formutilidades.getFieldError(form, "Password")}}</span>
                       }
                    </div>
 
@@ -74,7 +74,7 @@
 
               </div>
               <div class="space-y-3">
-                <button [disabled]="form.invalid" class="inline-flex items-center justify-center gap-1 whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 px-3 py-2 w-full h-11 sm:h-12 bg-slate-900
+                <button  class="inline-flex items-center justify-center gap-1 whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 px-3 py-2 w-full h-11 sm:h-12 bg-slate-900
                  hover:bg-slate-800 text-white font-medium shadow-sm rounded-xl transition-all duration-200" > Sign in
                 </button>
 

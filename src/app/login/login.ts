@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormUtilidades } from '../compartidos/componentes/form-utilidades';
-import { CredencialesUsuarioDTO } from '../security/seguridaddto';
+import { CredencialesUsuariodto } from '../security/seguridaddto';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -11,15 +11,15 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './login.html',
 })
 export class Login {
-   @Output() postlogin = new EventEmitter<CredencialesUsuarioDTO>
+   @Output() postlogin = new EventEmitter<CredencialesUsuariodto>
   formutilidades = FormUtilidades
   private fb = inject(FormBuilder)
   form = this.fb.group({
-    email:['',[Validators.required,Validators.pattern(this.formutilidades.emailPattern)]],
-    password:['',{validators:[Validators.required,Validators.minLength(4)]}]
+    Email:['',[Validators.required,Validators.pattern(this.formutilidades.emailPattern)]],
+    Password:['',{validators:[Validators.required,Validators.minLength(4)]}]
   })
   guardarlogin(){
-    const login = this.form.value as CredencialesUsuarioDTO
+    const login = this.form.value as CredencialesUsuariodto
     this.postlogin.emit(login)
   }
 }

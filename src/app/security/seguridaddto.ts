@@ -1,9 +1,9 @@
-export interface CredencialesUsuarioDTO{
+export interface CredencialesUsuariodto{
   email:string,
   password:string
 }
 
-export interface RespuestaAutenticacionDTO{
+export interface RespuestaAutenticaciondto{
   token: string,
   expiracion: Date
 }

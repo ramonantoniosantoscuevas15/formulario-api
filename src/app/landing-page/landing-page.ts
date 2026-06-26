@@ -12,10 +12,11 @@ import { RouterLink } from '@angular/router';
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { Lista } from "../lista/lista";
+import { Autorizado } from "../autorizado/autorizado";
 
 @Component({
   selector: 'app-landing-page',
-  imports: [ListadoGenerico, MatButtonModule, MatTableModule, MatPaginatorModule, RouterLink, SweetAlert2Module, Lista],
+  imports: [MatButtonModule, MatTableModule, MatPaginatorModule, SweetAlert2Module, Lista, Autorizado],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.css',
 })

@@ -24,27 +24,33 @@ import { EditarPacientes } from './pacientes/editar-pacientes/editar-pacientes';
 import { Pacientefiltro } from './pacientefiltro/pacientefiltro';
 import { Login } from './login/login';
 import { Lista } from './lista/lista';
+import { esAdminGuard } from './compartidos/guards/es-admin-guard';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LandingPage
+    component: LandingPage,
+    // canActivate:[esAdminGuard]
   },
 
   {path: 'pacientes',
-    component: FormularioPacientes
+    component: FormularioPacientes,
+    // canActivate:[esAdminGuard]
   },
   {
     path: 'paciente/editar/:id',
-    component: EditarPacientes
+    component: EditarPacientes,
+    // canActivate:[esAdminGuard]
   },
   {
     path:'buscarpaciente',
-    component:Pacientefiltro
+    component:Pacientefiltro,
+    // canActivate:[esAdminGuard]
   },
   {
     path:'personas/filtro',
-    component:FiltroPersonas
+    component:FiltroPersonas,
+    // canActivate:[esAdminGuard]
   },
   {
     path:'Login',
